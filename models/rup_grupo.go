@@ -19,7 +19,7 @@ type RupGrupo struct {
 	NumeroOrden           float64              `orm:"column(numero_orden);null"`
 	FechaCreacion         time.Time            `orm:"column(fecha_creacion);type(timestamp without time zone)"`
 	FechaModificacion     time.Time            `orm:"column(fecha_modificacion);type(timestamp without time zone)"`
-	RupTipoEspecialidadId *RupTipoEspecialidad `orm:"column(rup_tipo_especialidad_id);rel(fk)"`
+	RupEspecialidadId 	  *RupEspecialidad 	   `orm:"column(rup_especialidad_id);rel(fk)"`
 }
 
 func (t *RupGrupo) TableName() string {
