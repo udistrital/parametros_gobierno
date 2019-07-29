@@ -124,3 +124,18 @@ CREATE TABLE parametros_gobierno.rup_grupo(
 	CONSTRAINT fk_rup_tipo_especialidad_rup_grupo FOREIGN KEY (rup_tipo_especialidad_id) REFERENCES parametros_gobierno.rup_tipo_especialidad(id)
 );
 
+--######################################################
+--Migracion: 20190729_111601_eliminar_constraint
+
+ALTER TABLE parametros_gobierno.rup_grupo
+DROP CONSTRAINT fk_rup_tipo_especialidad_rup_grupo;
+
+ALTER TABLE parametros_gobierno.rup_grupo
+RENAME rup_tipo_especialidad_id TO rup_especialidad_id;
+
+ALTER TABLE parametros_gobierno.rup_grupo 
+ADD CONSTRAINT fk_rup_especialidad_rup_grupo 
+FOREIGN KEY (rup_especialidad_id) 
+REFERENCES parametros_gobierno.rup_especialidad (id) 
+MATCH FULL ON DELETE SET NULL ON UPDATE CASCADE;
+--######################################################
