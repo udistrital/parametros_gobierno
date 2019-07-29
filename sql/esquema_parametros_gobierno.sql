@@ -139,3 +139,7 @@ FOREIGN KEY (rup_especialidad_id)
 REFERENCES parametros_gobierno.rup_especialidad (id) 
 MATCH FULL ON DELETE SET NULL ON UPDATE CASCADE;
 --######################################################
+--Migracion: 20190729_111602_cambiar_size_columna
+ALTER TABLE parametros_gobierno.rup_especialidad 
+ALTER COLUMN nombre type character varying(255);
+--######################################################
