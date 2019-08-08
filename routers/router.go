@@ -45,6 +45,18 @@ func init() {
 				&controllers.AreaConocimientoController{},
 			),
 		),
+
+		beego.NSNamespace("/salario_minimo",
+			beego.NSInclude(
+				&controllers.SalarioMinimoController{},
+			),
+		),
+
+		beego.NSNamespace("/punto_salarial",
+			beego.NSInclude(
+				&controllers.PuntoSalarialController{},
+			),
+		),
 	)
 	beego.AddNamespace(ns)
 }
