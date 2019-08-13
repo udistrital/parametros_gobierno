@@ -10,51 +10,49 @@ import (
 	"github.com/astaxie/beego/orm"
 )
 
-type RupGrupo struct {
-	Id                    int                  `orm:"column(id);pk;auto"`
-	Nombre                string               `orm:"column(nombre)"`
-	Descripcion           string               `orm:"column(descripcion);null"`
-	CodigoAbreviacion     string               `orm:"column(codigo_abreviacion);null"`
-	Activo                bool                 `orm:"column(activo)"`
-	NumeroOrden           float64              `orm:"column(numero_orden);null"`
-	FechaCreacion         time.Time            `orm:"column(fecha_creacion);type(timestamp without time zone)"`
-	FechaModificacion     time.Time            `orm:"column(fecha_modificacion);type(timestamp without time zone)"`
-	RupEspecialidadId 	  *RupEspecialidad 	   `orm:"column(rup_especialidad_id);rel(fk)"`
+type PuntoSalarial struct {
+	Id                int       `orm:"column(id);pk;auto"`
+	Vigencia          float64   `orm:"column(vigencia)"`
+	Valor             float64   `orm:"column(valor)"`
+	Decreto           string    `orm:"column(decreto);null"`
+	Activo            bool      `orm:"column(activo)"`
+	FechaCreacion     time.Time `orm:"column(fecha_creacion);type(timestamp without time zone)"`
+	FechaModificacion time.Time `orm:"column(fecha_modificacion);type(timestamp without time zone)"`
 }
 
-func (t *RupGrupo) TableName() string {
-	return "rup_grupo"
+func (t *PuntoSalarial) TableName() string {
+	return "punto_salarial"
 }
 
 func init() {
-	orm.RegisterModel(new(RupGrupo))
+	orm.RegisterModel(new(PuntoSalarial))
 }
 
-// AddRupGrupo insert a new RupGrupo into database and returns
+// AddPuntoSalarial insert a new PuntoSalarial into database and returns
 // last inserted Id on success.
-func AddRupGrupo(m *RupGrupo) (id int64, err error) {
+func AddPuntoSalarial(m *PuntoSalarial) (id int64, err error) {
 	o := orm.NewOrm()
 	id, err = o.Insert(m)
 	return
 }
 
-// GetRupGrupoById retrieves RupGrupo by Id. Returns error if
+// GetPuntoSalarialById retrieves PuntoSalarial by Id. Returns error if
 // Id doesn't exist
-func GetRupGrupoById(id int) (v *RupGrupo, err error) {
+func GetPuntoSalarialById(id int) (v *PuntoSalarial, err error) {
 	o := orm.NewOrm()
-	v = &RupGrupo{Id: id}
+	v = &PuntoSalarial{Id: id}
 	if err = o.Read(v); err == nil {
 		return v, nil
 	}
 	return nil, err
 }
 
-// GetAllRupGrupo retrieves all RupGrupo matches certain condition. Returns empty list if
+// GetAllPuntoSalarial retrieves all PuntoSalarial matches certain condition. Returns empty list if
 // no records exist
-func GetAllRupGrupo(query map[string]string, fields []string, sortby []string, order []string,
+func GetAllPuntoSalarial(query map[string]string, fields []string, sortby []string, order []string,
 	offset int64, limit int64) (ml []interface{}, err error) {
 	o := orm.NewOrm()
-	qs := o.QueryTable(new(RupGrupo)).RelatedSel()
+	qs := o.QueryTable(new(PuntoSalarial))
 	// query k=v
 	for k, v := range query {
 		// rewrite dot-notation to Object__Attribute
@@ -104,7 +102,7 @@ func GetAllRupGrupo(query map[string]string, fields []string, sortby []string, o
 		}
 	}
 
-	var l []RupGrupo
+	var l []PuntoSalarial
 	qs = qs.OrderBy(sortFields...)
 	if _, err = qs.Limit(limit, offset).All(&l, fields...); err == nil {
 		if len(fields) == 0 {
@@ -127,11 +125,11 @@ func GetAllRupGrupo(query map[string]string, fields []string, sortby []string, o
 	return nil, err
 }
 
-// UpdateRupGrupo updates RupGrupo by Id and returns error if
+// UpdatePuntoSalarial updates PuntoSalarial by Id and returns error if
 // the record to be updated doesn't exist
-func UpdateRupGrupoById(m *RupGrupo) (err error) {
+func UpdatePuntoSalarialById(m *PuntoSalarial) (err error) {
 	o := orm.NewOrm()
-	v := RupGrupo{Id: m.Id}
+	v := PuntoSalarial{Id: m.Id}
 	// ascertain id exists in the database
 	if err = o.Read(&v); err == nil {
 		var num int64
@@ -142,15 +140,15 @@ func UpdateRupGrupoById(m *RupGrupo) (err error) {
 	return
 }
 
-// DeleteRupGrupo deletes RupGrupo by Id and returns error if
+// DeletePuntoSalarial deletes PuntoSalarial by Id and returns error if
 // the record to be deleted doesn't exist
-func DeleteRupGrupo(id int) (err error) {
+func DeletePuntoSalarial(id int) (err error) {
 	o := orm.NewOrm()
-	v := RupGrupo{Id: id}
+	v := PuntoSalarial{Id: id}
 	// ascertain id exists in the database
 	if err = o.Read(&v); err == nil {
 		var num int64
-		if num, err = o.Delete(&RupGrupo{Id: id}); err == nil {
+		if num, err = o.Delete(&PuntoSalarial{Id: id}); err == nil {
 			fmt.Println("Number of records deleted in database:", num)
 		}
 	}
