@@ -13,10 +13,7 @@ pipeline:
     commands:
      - go get -t
      - go get -u github.com/beego/bee
-     - cd database/migrations
-     - cat 20190716_101001_crear_schema.go
-     - exit
-     - bee migrate -driver=postgres -conn="postgres://$${PG_CORE_USER}:$${PG_CORE_PASSWORD}@$${PG_CORE_URL}:5432/$${PG_CORE_DBNAME}?sslmode=disable"
+     - PARAMETROS_GOB__PGUSER=$${PG_CORE_USER} bee migrate -driver=postgres -conn="postgres://$${PG_CORE_USER}:$${PG_CORE_PASSWORD}@$${PG_CORE_URL}:5432/$${PG_CORE_DBNAME}?sslmode=disable"
     when:
       branch: [test]
 
