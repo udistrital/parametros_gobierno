@@ -57,6 +57,12 @@ func init() {
 				&controllers.PuntoSalarialController{},
 			),
 		),
+
+		beego.NSNamespace("/iva",
+			beego.NSInclude(
+				&controllers.PuntoSalarialController{},
+			),
+		),
 	)
 	beego.AddNamespace(ns)
 }

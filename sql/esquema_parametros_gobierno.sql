@@ -62,7 +62,7 @@ CREATE SEQUENCE parametros_gobierno.rup_tipo_especialidad_id_seq
 
 CREATE TABLE parametros_gobierno.rup_tipo_especialidad(
 	id integer NOT NULL DEFAULT nextval('parametros_gobierno.rup_tipo_especialidad_id_seq'::regclass),
-	nombre character varying(100) NOT NULL,     -- 
+	nombre character varying(100) NOT NULL,
 	descripcion character varying(100),
 	codigo_abreviacion character varying(20),
 	activo boolean NOT NULL,
@@ -145,6 +145,7 @@ ALTER COLUMN nombre type character varying(255);
 --######################################################
 
 -- Creación de secuencia y tabla punto salarial
+--Migracion: 20190801_101001_crear_tabla_punto_salarial
 
 CREATE SEQUENCE parametros_gobierno.punto_salarial_id_seq
 	INCREMENT BY 1
@@ -188,4 +189,32 @@ CREATE TABLE parametros_gobierno.salario_minimo(
 	fecha_modificacion TIMESTAMP,
 	CONSTRAINT pk_salario_minimo PRIMARY KEY (id)
 	--unique para el año?
+);
+
+--######################################################
+--######################################################
+
+--Creacion tabla iva 
+--Migracion: 20190814_104001_crear_tabla_iva
+CREATE SEQUENCE parametros_gobierno.iva_id_seq
+	INCREMENT BY 1
+	MINVALUE 1
+	MAXVALUE 9223372036854775807
+	START WITH 1
+	CACHE 1
+	NO CYCLE
+	OWNED BY NONE;
+
+CREATE TABLE parametros_gobierno.iva(
+	id integer NOT NULL DEFAULT nextval('parametros_gobierno.iva_id_seq'::regclass),
+	nombre character varying(100) NOT NULL,
+	descripcion character varying(100),
+	codigo_abreviacion character varying(20),
+	vigencia numeric(4,0) NOT NULL,
+	valor_porcentaje numeric(5,4) NOT NULL,
+	decreto character varying(255),
+	activo boolean NOT NULL,
+	fecha_creacion TIMESTAMP NOT NULL,
+	fecha_modificacion TIMESTAMP NOT NULL,
+	CONSTRAINT pk_iva PRIMARY KEY (id)
 );
