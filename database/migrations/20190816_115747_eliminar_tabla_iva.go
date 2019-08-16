@@ -20,8 +20,8 @@ func init() {
 // Run the migrations
 func (m *EliminarTablaIva_20190816_115747) Up() {
 	// use m.SQL("CREATE TABLE ...") to make schema update
-	m.SQL("DROP SEQUENCE IF EXIST parametros_gobierno.iva_id_seq;")
-	m.SQL("DROP TABLE IF EXIST parametros_gobierno.iva;")
+	m.SQL("DROP SEQUENCE IF EXISTS parametros_gobierno.iva_id_seq;")
+	m.SQL("DROP TABLE IF EXISTS parametros_gobierno.iva;")
 }
 
 // Reverse the migrations
