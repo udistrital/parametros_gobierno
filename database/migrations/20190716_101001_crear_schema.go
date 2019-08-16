@@ -20,7 +20,7 @@ func init() {
 // Run the migrations
 func (m *CrearSchema_20190716_101001) Up() {
 	// use m.SQL("CREATE TABLE ...") to make schema update
-m.SQL("CREATE SCHEMA parametros_gobierno;")
+m.SQL("CREATE SCHEMA IF NOT EXISTS parametros_gobierno;")
 m.SQL("ALTER SCHEMA parametros_gobierno OWNER TO desarrollooas;")
 m.SQL("SET search_path TO pg_catalog,public,parametros_gobierno;")
 

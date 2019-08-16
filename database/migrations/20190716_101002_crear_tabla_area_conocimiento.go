@@ -20,7 +20,7 @@ func init() {
 // Run the migrations
 func (m *CrearTablaAreaConocimiento_20190716_101002) Up() {
 	// use m.SQL("CREATE TABLE ...") to make schema update
-m.SQL("CREATE TABLE parametros_gobierno.area_conocimiento(id serial NOT NULL, nombre varchar(100) NOT NULL, descripcion varchar(100), codigo_abreviacion varchar(20), activo boolean NOT NULL, numero_orden numeric(5,2), fecha_creacion TIMESTAMP NOT NULL, fecha_modificacion TIMESTAMP NOT NULL, CONSTRAINT pk_area_conocimiento PRIMARY KEY (id));")
+m.SQL("CREATE TABLE IF NOT EXISTS parametros_gobierno.area_conocimiento(id serial NOT NULL, nombre varchar(100) NOT NULL, descripcion varchar(100), codigo_abreviacion varchar(20), activo boolean NOT NULL, numero_orden numeric(5,2), fecha_creacion TIMESTAMP NOT NULL, fecha_modificacion TIMESTAMP NOT NULL, CONSTRAINT pk_area_conocimiento PRIMARY KEY (id));")
 m.SQL("ALTER TABLE parametros_gobierno.area_conocimiento OWNER TO desarrollooas;")
 
 
