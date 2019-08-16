@@ -218,3 +218,9 @@ CREATE TABLE parametros_gobierno.iva(
 	fecha_modificacion TIMESTAMP NOT NULL,
 	CONSTRAINT pk_iva PRIMARY KEY (id)
 );
+
+Migration: 20190816_115747_eliminar_tabla_iva
+
+DROP SEQUENCE parametros_gobierno.iva_id_seq;
+DROP TABLE parametros_gobierno.iva;
+
