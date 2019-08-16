@@ -20,7 +20,7 @@ func init() {
 // Run the migrations
 func (m *CrearTablaPuntoSalarial_20190801_101001) Up() {
 	// use m.SQL("CREATE TABLE ...") to make schema update
-m.SQL("CREATE TABLE parametros_gobierno.punto_salarial(id serial NOT NULL, vigencia numeric(4,0) NOT NULL, valor numeric(10,2) NOT NULL, decreto varchar(255), activo boolean NOT NULL, fecha_creacion TIMESTAMP NOT NULL, fecha_modificacion TIMESTAMP NOT NULL, CONSTRAINT pk_punto_salarial PRIMARY KEY (id));")
+m.SQL("CREATE TABLE IF NOT EXISTS parametros_gobierno.punto_salarial(id serial NOT NULL, vigencia numeric(4,0) NOT NULL, valor numeric(10,2) NOT NULL, decreto varchar(255), activo boolean NOT NULL, fecha_creacion TIMESTAMP NOT NULL, fecha_modificacion TIMESTAMP NOT NULL, CONSTRAINT pk_punto_salarial PRIMARY KEY (id));")
 m.SQL("ALTER TABLE parametros_gobierno.punto_salarial OWNER TO desarrollooas;")
 
 
