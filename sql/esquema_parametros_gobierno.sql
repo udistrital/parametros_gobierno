@@ -224,3 +224,186 @@ Migration: 20190816_115747_eliminar_tabla_iva
 DROP SEQUENCE parametros_gobierno.iva_id_seq;
 DROP TABLE parametros_gobierno.iva;
 
+--Comentarios Tablas
+
+--area_conocimiento 
+COMMENT ON TABLE parametros_gobierno.area_conocimiento IS 'Tabla que parametriza las Áreas del Conocimiento según el SNIES';
+COMMENT ON COLUMN parametros_gobierno.area_conocimiento.id IS '';
+COMMENT ON COLUMN parametros_gobierno.area_conocimiento.nombre IS '';
+COMMENT ON COLUMN parametros_gobierno.area_conocimiento.descripcion IS '';
+COMMENT ON COLUMN parametros_gobierno.area_conocimiento.codigo_abreviacion IS '';
+COMMENT ON COLUMN parametros_gobierno.area_conocimiento.activo IS '';
+COMMENT ON COLUMN parametros_gobierno.area_conocimiento.numero_orden IS '';
+COMMENT ON COLUMN parametros_gobierno.area_conocimiento.fecha_creacion IS '';
+COMMENT ON COLUMN parametros_gobierno.area_conocimiento.fecha_modificacion IS '';
+
+--nucleo_basico_conocimiento
+COMMENT ON TABLE parametros_gobierno.nucleo_basico_conocimiento IS '';
+COMMENT ON COLUMN parametros_gobierno.nucleo_basico_conocimiento.id IS '';
+COMMENT ON COLUMN parametros_gobierno.nucleo_basico_conocimiento.nombre IS '';
+COMMENT ON COLUMN parametros_gobierno.nucleo_basico_conocimiento.descripcion IS '';
+COMMENT ON COLUMN parametros_gobierno.nucleo_basico_conocimiento.codigo_abreviacion IS '';
+COMMENT ON COLUMN parametros_gobierno.nucleo_basico_conocimiento.activo IS '';
+COMMENT ON COLUMN parametros_gobierno.nucleo_basico_conocimiento.numero_orden IS '';
+COMMENT ON COLUMN parametros_gobierno.nucleo_basico_conocimiento.fecha_creacion IS '';
+COMMENT ON COLUMN parametros_gobierno.nucleo_basico_conocimiento.fecha_modificacion IS '';
+COMMENT ON COLUMN parametros_gobierno.nucleo_basico_conocimiento.area_conocimiento_id IS '';
+COMMENT ON CONSTRAINT pk_area_conocimiento_id ON parametros_gobierno.nucleo_basico_conocimiento IS '';
+
+--rup_tipo_especialidad
+COMMENT ON TABLE parametros_gobierno.rup_tipo_especialidad IS '';
+COMMENT ON COLUMN parametros_gobierno.rup_tipo_especialidad.id IS '';
+COMMENT ON COLUMN parametros_gobierno.rup_tipo_especialidad.nombre IS '';
+COMMENT ON COLUMN parametros_gobierno.rup_tipo_especialidad.descripcion IS '';
+COMMENT ON COLUMN parametros_gobierno.rup_tipo_especialidad.codigo_abreviacion IS '';
+COMMENT ON COLUMN parametros_gobierno.rup_tipo_especialidad.activo IS '';
+COMMENT ON COLUMN parametros_gobierno.rup_tipo_especialidad.numero_orden IS '';
+COMMENT ON COLUMN parametros_gobierno.rup_tipo_especialidad.fecha_creacion IS '';
+COMMENT ON COLUMN parametros_gobierno.rup_tipo_especialidad.fecha_modificacion IS '';
+
+--rup_especialidad
+COMMENT ON TABLE parametros_gobierno.rup_especialidad IS '';
+COMMENT ON COLUMN parametros_gobierno.rup_especialidad.id IS '';
+COMMENT ON COLUMN parametros_gobierno.rup_especialidad.nombre IS '';
+COMMENT ON COLUMN parametros_gobierno.rup_especialidad.descripcion IS '';
+COMMENT ON COLUMN parametros_gobierno.rup_especialidad.codigo_abreviacion IS '';
+COMMENT ON COLUMN parametros_gobierno.rup_especialidad.activo IS '';
+COMMENT ON COLUMN parametros_gobierno.rup_especialidad.numero_orden IS '';
+COMMENT ON COLUMN parametros_gobierno.rup_especialidad.fecha_creacion IS '';
+COMMENT ON COLUMN parametros_gobierno.rup_especialidad.fecha_modificacion IS '';
+COMMENT ON COLUMN parametros_gobierno.rup_especialidad.rup_tipo_especialidad_id IS '';
+COMMENT ON CONSTRAINT pk_rup_tipo_especialidad_id ON parametros_gobierno.rup_especialidad IS '';
+
+--rup_grupo
+COMMENT ON TABLE parametros_gobierno.rup_grupo IS '';
+COMMENT ON COLUMN parametros_gobierno.rup_grupo.id IS '';
+COMMENT ON COLUMN parametros_gobierno.rup_grupo.nombre IS '';
+COMMENT ON COLUMN parametros_gobierno.rup_grupo.descripcion IS '';
+COMMENT ON COLUMN parametros_gobierno.rup_grupo.codigo_abreviacion IS '';
+COMMENT ON COLUMN parametros_gobierno.rup_grupo.activo IS '';
+COMMENT ON COLUMN parametros_gobierno.rup_grupo.numero_orden IS '';
+COMMENT ON COLUMN parametros_gobierno.rup_grupo.fecha_creacion IS '';
+COMMENT ON COLUMN parametros_gobierno.rup_grupo.fecha_modificacion IS '';
+COMMENT ON COLUMN parametros_gobierno.rup_grupo.rup_especialidad_id IS '';
+COMMENT ON CONSTRAINT pk_rup_especialidad_id ON parametros_gobierno.rup_grupo IS '';
+
+--punto_salarial
+COMMENT ON TABLE parametros_gobierno.punto_salarial IS '';
+COMMENT ON COLUMN parametros_gobierno.punto_salarial.id IS '';
+COMMENT ON COLUMN parametros_gobierno.punto_salarial.vigencia IS '';
+COMMENT ON COLUMN parametros_gobierno.punto_salarial.valor IS '';
+COMMENT ON COLUMN parametros_gobierno.punto_salarial.decreto IS '';
+COMMENT ON COLUMN parametros_gobierno.punto_salarial.activo IS '';
+COMMENT ON COLUMN parametros_gobierno.punto_salarial.fecha_creacion IS '';
+COMMENT ON COLUMN parametros_gobierno.punto_salarial.fecha_modificacion IS '';
+
+--salario_minimo
+COMMENT ON TABLE parametros_gobierno.salario_minimo IS '';
+COMMENT ON COLUMN parametros_gobierno.salario_minimo.id IS '';
+COMMENT ON COLUMN parametros_gobierno.salario_minimo.vigencia IS '';
+COMMENT ON COLUMN parametros_gobierno.salario_minimo.valor IS '';
+COMMENT ON COLUMN parametros_gobierno.salario_minimo.decreto IS '';
+COMMENT ON COLUMN parametros_gobierno.salario_minimo.activo IS '';
+COMMENT ON COLUMN parametros_gobierno.salario_minimo.fecha_creacion IS '';
+COMMENT ON COLUMN parametros_gobierno.salario_minimo.fecha_modificacion IS '';
+
+
+--######################################################
+--######################################################
+-- IMPUESTOS
+
+--Creacion tabla tipo_impuesto 
+--Migracion: 
+CREATE SEQUENCE parametros_gobierno.tipo_impuesto_id_seq
+	INCREMENT BY 1
+	MINVALUE 1
+	MAXVALUE 9223372036854775807
+	START WITH 1
+	CACHE 1
+	NO CYCLE
+	OWNED BY NONE;
+
+CREATE TABLE parametros_gobierno.tipo_impuesto(
+	id integer NOT NULL DEFAULT nextval('parametros_gobierno.tipo_impuesto_id_seq'::regclass),
+	nombre character varying(100) NOT NULL,
+	descripcion character varying(100),
+	codigo_abreviacion character varying(20),
+	activo boolean NOT NULL,
+	numero_orden numeric(5,2),
+	fecha_creacion TIMESTAMP NOT NULL,
+	fecha_modificacion TIMESTAMP NOT NULL,
+	CONSTRAINT pk_tipo_impuesto PRIMARY KEY (id)
+);
+--Creacion tabla impuesto 
+--Migracion: 
+CREATE SEQUENCE parametros_gobierno.impuesto_id_seq
+	INCREMENT BY 1
+	MINVALUE 1
+	MAXVALUE 9223372036854775807
+	START WITH 1
+	CACHE 1
+	NO CYCLE
+	OWNED BY NONE;
+
+CREATE TABLE parametros_gobierno.impuesto(
+	id integer NOT NULL DEFAULT nextval('parametros_gobierno.impuesto_id_seq'::regclass),
+	nombre character varying(100) NOT NULL,
+	descripcion character varying(100),
+	codigo_abreviacion character varying(20),
+	activo boolean NOT NULL,
+	numero_orden numeric(5,2),
+	fecha_creacion TIMESTAMP NOT NULL,
+	fecha_modificacion TIMESTAMP NOT NULL,
+	tipo_impuesto_id integer NOT NULL,
+	CONSTRAINT pk_impuesto PRIMARY KEY (id),
+	CONSTRAINT fk_tipo_impuesto_impuesto FOREIGN KEY (tipo_impuesto_id) REFERENCES parametros_gobierno.impuesto(id)
+);
+--Creacion tabla vigencia_impuesto 
+--Migracion: 
+CREATE SEQUENCE parametros_gobierno.impuesto_id_seq
+	INCREMENT BY 1
+	MINVALUE 1
+	MAXVALUE 9223372036854775807
+	START WITH 1
+	CACHE 1
+	NO CYCLE
+	OWNED BY NONE;
+
+CREATE TABLE parametros_gobierno.impuesto(
+	id integer NOT NULL DEFAULT nextval('parametros_gobierno.impuesto_id_seq'::regclass),
+	nombre character varying(100) NOT NULL,
+	descripcion character varying(100),
+	codigo_abreviacion character varying(20),
+	activo boolean NOT NULL,
+	numero_orden numeric(5,2),
+	fecha_creacion TIMESTAMP NOT NULL,
+	fecha_modificacion TIMESTAMP NOT NULL,
+	tipo_impuesto_id integer NOT NULL,
+	CONSTRAINT pk_impuesto PRIMARY KEY (id),
+	CONSTRAINT fk_tipo_impuesto_impuesto FOREIGN KEY (tipo_impuesto_id) REFERENCES parametros_gobierno.impuesto(id)
+);
+
+--######################################################
+--######################################################
+
+
+
+
+
+
+
+
+
+
+--######################################################
+--######################################################
+### Stuff 
+COMMENT ON COLUMN parametros_gobierno.rup_grupo.id IS '';
+COMMENT ON COLUMN parametros_gobierno.rup_grupo.nombre IS '';
+COMMENT ON COLUMN parametros_gobierno.rup_grupo.descripcion IS '';
+COMMENT ON COLUMN parametros_gobierno.rup_grupo.codigo_abreviacion IS '';
+COMMENT ON COLUMN parametros_gobierno.rup_grupo.activo IS '';
+COMMENT ON COLUMN parametros_gobierno.rup_grupo.numero_orden IS '';
+COMMENT ON COLUMN parametros_gobierno.rup_grupo.fecha_creacion IS '';
+COMMENT ON COLUMN parametros_gobierno.rup_grupo.fecha_modificacion IS '';
+###
