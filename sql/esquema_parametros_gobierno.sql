@@ -420,7 +420,7 @@ CREATE TABLE parametros_gobierno.tipo_impuesto(
 );
 
 --tipo_impuesto
-COMMENT ON TABLE parametros_gobierno.tipo_impuesto IS '';
+COMMENT ON TABLE parametros_gobierno.tipo_impuesto IS 'Tabla que parametriza los diferentes tipos de impuestos como pueden ser IVA, Retefuentes entre otros.';
 COMMENT ON COLUMN parametros_gobierno.tipo_impuesto.id IS 'Identificador unico de la tabla tipo_impuesto.';
 COMMENT ON COLUMN parametros_gobierno.tipo_impuesto.nombre IS 'Campo obligatorio de la tabla que indica el nombre del parámetro.';
 COMMENT ON COLUMN parametros_gobierno.tipo_impuesto.descripcion IS 'Campo en el que se puede registrar una descripcion de la informacion de tipo_impuesto.';
@@ -456,7 +456,7 @@ CREATE TABLE parametros_gobierno.impuesto(
 );
 
 --impuesto
-COMMENT ON TABLE parametros_gobierno.impuesto IS '';
+COMMENT ON TABLE parametros_gobierno.impuesto IS 'Tabla que parametriza los diferentes subtipos de impuestos, cada impuesto debe estar asociado a un tipo de impuesto.';
 COMMENT ON COLUMN parametros_gobierno.impuesto.id IS 'Identificador unico de la tabla impuesto.';
 COMMENT ON COLUMN parametros_gobierno.impuesto.nombre IS 'Campo obligatorio de la tabla que indica el nombre del parámetro.';
 COMMENT ON COLUMN parametros_gobierno.impuesto.descripcion IS 'Campo en el que se puede registrar una descripcion de la informacion de impuesto.';
@@ -481,10 +481,13 @@ CREATE SEQUENCE parametros_gobierno.vigencia_impuesto_id_seq
 CREATE TABLE parametros_gobierno.vigencia_impuesto(
 	id integer NOT NULL DEFAULT nextval('parametros_gobierno.vigencia_impuesto_id_seq'::regclass),
 	activo boolean NOT NULL,
-	valor 
-	porcentaje
-	fecha_inicio TIMESTAMP NOT NULL,
-	fecha_fin TIMESTAMP NOT NULL,
+	tarifa numeric(5,2) NOT NULL, 
+	porcentaje_aplicacion numeric(5,2),
+	base_uvt INTEGER, 
+	base_pesos numeric(20,7),
+	inicio_vigencia TIMESTAMP NOT NULL,
+	fin_vigencia TIMESTAMP NOT NULL,
+	decreto character varying(255),
 	fecha_creacion TIMESTAMP NOT NULL,
 	fecha_modificacion TIMESTAMP NOT NULL,
 	impuesto_id integer NOT NULL,
@@ -492,13 +495,16 @@ CREATE TABLE parametros_gobierno.vigencia_impuesto(
 	CONSTRAINT fk_impuesto_vigencia_impuesto FOREIGN KEY (impuesto_id) REFERENCES parametros_gobierno.impuesto(id)
 );
 --vigencia_impuesto
-COMMENT ON TABLE parametros_gobierno.vigencia_impuesto IS '';
+COMMENT ON TABLE parametros_gobierno.vigencia_impuesto IS 'Tabla que permite registrar los diferentes valores aplicables para los impuestos segun periodo.';
 COMMENT ON COLUMN parametros_gobierno.vigencia_impuesto.id IS 'Identificador unico de la tabla vigencia_impuesto.';
 COMMENT ON COLUMN parametros_gobierno.vigencia_impuesto.activo IS 'Valor booleano para indicar si el registro esta activo o inactivo.';
-COMMENT ON COLUMN parametros_gobierno.vigencia_impuesto.°°°°°°°
-COMMENT ON COLUMN parametros_gobierno.vigencia_impuesto.°°°°°°°
-COMMENT ON COLUMN parametros_gobierno.vigencia_impuesto.fecha_inicio IS 'Fecha inicial de vigencia de la tarifa.';
-COMMENT ON COLUMN parametros_gobierno.vigencia_impuesto.fecha_fin IS 'Fecha final de vigencia de la tarifa.';
+COMMENT ON COLUMN parametros_gobierno.vigencia_impuesto.tarifa IS 'Porcentaje que aplica para el impuesto que se está definiendo.';
+COMMENT ON COLUMN parametros_gobierno.vigencia_impuesto.porcentaje_aplicacion IS 'Porcentaje sobre el valor total.';
+COMMENT ON COLUMN parametros_gobierno.vigencia_impuesto.base_uvt IS 'Valor de impuesto expresado en numero de Unidades de Valor Tributario (UVT).';
+COMMENT ON COLUMN parametros_gobierno.vigencia_impuesto.base_pesos IS 'Valor de impuesto expresado en pesos';
+COMMENT ON COLUMN parametros_gobierno.vigencia_impuesto.inicio_vigencia IS 'Fecha en la que empieza a regir esta tarifa.';
+COMMENT ON COLUMN parametros_gobierno.vigencia_impuesto.fin_vigencia IS 'Fecha en la que termina de regir esta tarifa.';
+COMMENT ON COLUMN parametros_gobierno.vigencia_impuesto.decreto IS 'Decreto o ley nacional que establece el valor para esta tarifa, en determinado periodo.';
 COMMENT ON COLUMN parametros_gobierno.vigencia_impuesto.fecha_creacion IS 'Fecha y hora de la creación del registro en la BD.';
 COMMENT ON COLUMN parametros_gobierno.vigencia_impuesto.fecha_modificacion IS 'Fecha y hora de la ultima modificación del registro en la BD.';
 COMMENT ON COLUMN parametros_gobierno.vigencia_impuesto.impuesto_id IS 'Referencia foranea a la tabla impuesto que almacena el nombre y tipo, para el cual corresponde el valor y la vigencia.';
@@ -506,7 +512,14 @@ COMMENT ON COLUMN parametros_gobierno.vigencia_impuesto.impuesto_id IS 'Referenc
 --######################################################################################################################################################
 --######################################################################################################################################################
 
+--Añadir llave foranea faltante
+--Migracion: 20190821_112910_agregar_fk_actividad_economica
 
+ALTER TABLE parametros_gobierno.actividad_economica 
+ADD CONSTRAINT fk_clasificacion_ciiu_actividad_economica 
+FOREIGN KEY (clasificacion_ciiu_id) 
+REFERENCES parametros_gobierno.clasificacion_ciiu (id) 
+MATCH FULL ON DELETE SET NULL ON UPDATE CASCADE;
 
 
 
