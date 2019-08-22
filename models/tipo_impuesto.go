@@ -10,52 +10,50 @@ import (
 	"github.com/astaxie/beego/orm"
 )
 
-type Iva struct {
+type TipoImpuesto struct {
 	Id                int       `orm:"column(id);pk;auto"`
 	Nombre            string    `orm:"column(nombre)"`
 	Descripcion       string    `orm:"column(descripcion);null"`
 	CodigoAbreviacion string    `orm:"column(codigo_abreviacion);null"`
-	Vigencia          float64   `orm:"column(vigencia)"`
-	ValorPorcentaje   float64   `orm:"column(valor_porcentaje)"`
-	Decreto           string    `orm:"column(decreto);null"`
 	Activo            bool      `orm:"column(activo)"`
+	NumeroOrden       float64   `orm:"column(numero_orden);null"`
 	FechaCreacion     time.Time `orm:"column(fecha_creacion);type(timestamp without time zone)"`
 	FechaModificacion time.Time `orm:"column(fecha_modificacion);type(timestamp without time zone)"`
 }
 
-func (t *Iva) TableName() string {
-	return "iva"
+func (t *TipoImpuesto) TableName() string {
+	return "tipo_impuesto"
 }
 
 func init() {
-	orm.RegisterModel(new(Iva))
+	orm.RegisterModel(new(TipoImpuesto))
 }
 
-// AddIva insert a new Iva into database and returns
+// AddTipoImpuesto insert a new TipoImpuesto into database and returns
 // last inserted Id on success.
-func AddIva(m *Iva) (id int64, err error) {
+func AddTipoImpuesto(m *TipoImpuesto) (id int64, err error) {
 	o := orm.NewOrm()
 	id, err = o.Insert(m)
 	return
 }
 
-// GetIvaById retrieves Iva by Id. Returns error if
+// GetTipoImpuestoById retrieves TipoImpuesto by Id. Returns error if
 // Id doesn't exist
-func GetIvaById(id int) (v *Iva, err error) {
+func GetTipoImpuestoById(id int) (v *TipoImpuesto, err error) {
 	o := orm.NewOrm()
-	v = &Iva{Id: id}
+	v = &TipoImpuesto{Id: id}
 	if err = o.Read(v); err == nil {
 		return v, nil
 	}
 	return nil, err
 }
 
-// GetAllIva retrieves all Iva matches certain condition. Returns empty list if
+// GetAllTipoImpuesto retrieves all TipoImpuesto matches certain condition. Returns empty list if
 // no records exist
-func GetAllIva(query map[string]string, fields []string, sortby []string, order []string,
+func GetAllTipoImpuesto(query map[string]string, fields []string, sortby []string, order []string,
 	offset int64, limit int64) (ml []interface{}, err error) {
 	o := orm.NewOrm()
-	qs := o.QueryTable(new(Iva))
+	qs := o.QueryTable(new(TipoImpuesto)).RelatedSel()
 	// query k=v
 	for k, v := range query {
 		// rewrite dot-notation to Object__Attribute
@@ -105,7 +103,7 @@ func GetAllIva(query map[string]string, fields []string, sortby []string, order 
 		}
 	}
 
-	var l []Iva
+	var l []TipoImpuesto
 	qs = qs.OrderBy(sortFields...)
 	if _, err = qs.Limit(limit, offset).All(&l, fields...); err == nil {
 		if len(fields) == 0 {
@@ -128,11 +126,11 @@ func GetAllIva(query map[string]string, fields []string, sortby []string, order 
 	return nil, err
 }
 
-// UpdateIva updates Iva by Id and returns error if
+// UpdateTipoImpuesto updates TipoImpuesto by Id and returns error if
 // the record to be updated doesn't exist
-func UpdateIvaById(m *Iva) (err error) {
+func UpdateTipoImpuestoById(m *TipoImpuesto) (err error) {
 	o := orm.NewOrm()
-	v := Iva{Id: m.Id}
+	v := TipoImpuesto{Id: m.Id}
 	// ascertain id exists in the database
 	if err = o.Read(&v); err == nil {
 		var num int64
@@ -143,15 +141,15 @@ func UpdateIvaById(m *Iva) (err error) {
 	return
 }
 
-// DeleteIva deletes Iva by Id and returns error if
+// DeleteTipoImpuesto deletes TipoImpuesto by Id and returns error if
 // the record to be deleted doesn't exist
-func DeleteIva(id int) (err error) {
+func DeleteTipoImpuesto(id int) (err error) {
 	o := orm.NewOrm()
-	v := Iva{Id: id}
+	v := TipoImpuesto{Id: id}
 	// ascertain id exists in the database
 	if err = o.Read(&v); err == nil {
 		var num int64
-		if num, err = o.Delete(&Iva{Id: id}); err == nil {
+		if num, err = o.Delete(&TipoImpuesto{Id: id}); err == nil {
 			fmt.Println("Number of records deleted in database:", num)
 		}
 	}

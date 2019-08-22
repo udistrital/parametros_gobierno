@@ -10,50 +10,54 @@ import (
 	"github.com/astaxie/beego/orm"
 )
 
-type RupTipoEspecialidad struct {
-	Id                int       `orm:"column(id);pk;auto"`
-	Nombre            string    `orm:"column(nombre)"`
-	Descripcion       string    `orm:"column(descripcion);null"`
-	CodigoAbreviacion string    `orm:"column(codigo_abreviacion);null"`
-	Activo            bool      `orm:"column(activo)"`
-	NumeroOrden       float64   `orm:"column(numero_orden);null"`
-	FechaCreacion     time.Time `orm:"column(fecha_creacion);type(timestamp without time zone)"`
-	FechaModificacion time.Time `orm:"column(fecha_modificacion);type(timestamp without time zone)"`
+type VigenciaImpuesto struct {
+	Id                   int       `orm:"column(id);pk;auto"`
+	Activo               bool      `orm:"column(activo)"`
+	Tarifa               float64   `orm:"column(tarifa)"`
+	PorcentajeAplicacion float64   `orm:"column(porcentaje_aplicacion);null"`
+	BaseUvt              int       `orm:"column(base_uvt);null"`
+	BasePesos            float64   `orm:"column(base_pesos);null"`
+	InicioVigencia       time.Time `orm:"column(inicio_vigencia);type(timestamp without time zone)"`
+	FinVigencia          time.Time `orm:"column(fin_vigencia);type(timestamp without time zone)"`
+	Decreto              string    `orm:"column(decreto);null"`
+	FechaCreacion        time.Time `orm:"column(fecha_creacion);type(timestamp without time zone)"`
+	FechaModificacion    time.Time `orm:"column(fecha_modificacion);type(timestamp without time zone)"`
+	ImpuestoId           *Impuesto `orm:"column(impuesto_id);rel(fk)"`
 }
 
-func (t *RupTipoEspecialidad) TableName() string {
-	return "rup_tipo_especialidad"
+func (t *VigenciaImpuesto) TableName() string {
+	return "vigencia_impuesto"
 }
 
 func init() {
-	orm.RegisterModel(new(RupTipoEspecialidad))
+	orm.RegisterModel(new(VigenciaImpuesto))
 }
 
-// AddRupTipoEspecialidad insert a new RupTipoEspecialidad into database and returns
+// AddVigenciaImpuesto insert a new VigenciaImpuesto into database and returns
 // last inserted Id on success.
-func AddRupTipoEspecialidad(m *RupTipoEspecialidad) (id int64, err error) {
+func AddVigenciaImpuesto(m *VigenciaImpuesto) (id int64, err error) {
 	o := orm.NewOrm()
 	id, err = o.Insert(m)
 	return
 }
 
-// GetRupTipoEspecialidadById retrieves RupTipoEspecialidad by Id. Returns error if
+// GetVigenciaImpuestoById retrieves VigenciaImpuesto by Id. Returns error if
 // Id doesn't exist
-func GetRupTipoEspecialidadById(id int) (v *RupTipoEspecialidad, err error) {
+func GetVigenciaImpuestoById(id int) (v *VigenciaImpuesto, err error) {
 	o := orm.NewOrm()
-	v = &RupTipoEspecialidad{Id: id}
+	v = &VigenciaImpuesto{Id: id}
 	if err = o.Read(v); err == nil {
 		return v, nil
 	}
 	return nil, err
 }
 
-// GetAllRupTipoEspecialidad retrieves all RupTipoEspecialidad matches certain condition. Returns empty list if
+// GetAllVigenciaImpuesto retrieves all VigenciaImpuesto matches certain condition. Returns empty list if
 // no records exist
-func GetAllRupTipoEspecialidad(query map[string]string, fields []string, sortby []string, order []string,
+func GetAllVigenciaImpuesto(query map[string]string, fields []string, sortby []string, order []string,
 	offset int64, limit int64) (ml []interface{}, err error) {
 	o := orm.NewOrm()
-	qs := o.QueryTable(new(RupTipoEspecialidad)).RelatedSel()
+	qs := o.QueryTable(new(VigenciaImpuesto)).RelatedSel()
 	// query k=v
 	for k, v := range query {
 		// rewrite dot-notation to Object__Attribute
@@ -103,7 +107,7 @@ func GetAllRupTipoEspecialidad(query map[string]string, fields []string, sortby 
 		}
 	}
 
-	var l []RupTipoEspecialidad
+	var l []VigenciaImpuesto
 	qs = qs.OrderBy(sortFields...)
 	if _, err = qs.Limit(limit, offset).All(&l, fields...); err == nil {
 		if len(fields) == 0 {
@@ -126,11 +130,11 @@ func GetAllRupTipoEspecialidad(query map[string]string, fields []string, sortby 
 	return nil, err
 }
 
-// UpdateRupTipoEspecialidad updates RupTipoEspecialidad by Id and returns error if
+// UpdateVigenciaImpuesto updates VigenciaImpuesto by Id and returns error if
 // the record to be updated doesn't exist
-func UpdateRupTipoEspecialidadById(m *RupTipoEspecialidad) (err error) {
+func UpdateVigenciaImpuestoById(m *VigenciaImpuesto) (err error) {
 	o := orm.NewOrm()
-	v := RupTipoEspecialidad{Id: m.Id}
+	v := VigenciaImpuesto{Id: m.Id}
 	// ascertain id exists in the database
 	if err = o.Read(&v); err == nil {
 		var num int64
@@ -141,15 +145,15 @@ func UpdateRupTipoEspecialidadById(m *RupTipoEspecialidad) (err error) {
 	return
 }
 
-// DeleteRupTipoEspecialidad deletes RupTipoEspecialidad by Id and returns error if
+// DeleteVigenciaImpuesto deletes VigenciaImpuesto by Id and returns error if
 // the record to be deleted doesn't exist
-func DeleteRupTipoEspecialidad(id int) (err error) {
+func DeleteVigenciaImpuesto(id int) (err error) {
 	o := orm.NewOrm()
-	v := RupTipoEspecialidad{Id: id}
+	v := VigenciaImpuesto{Id: id}
 	// ascertain id exists in the database
 	if err = o.Read(&v); err == nil {
 		var num int64
-		if num, err = o.Delete(&RupTipoEspecialidad{Id: id}); err == nil {
+		if num, err = o.Delete(&VigenciaImpuesto{Id: id}); err == nil {
 			fmt.Println("Number of records deleted in database:", num)
 		}
 	}
