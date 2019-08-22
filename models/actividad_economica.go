@@ -10,50 +10,51 @@ import (
 	"github.com/astaxie/beego/orm"
 )
 
-type RupTipoEspecialidad struct {
-	Id                int       `orm:"column(id);pk;auto"`
-	Nombre            string    `orm:"column(nombre)"`
-	Descripcion       string    `orm:"column(descripcion);null"`
-	CodigoAbreviacion string    `orm:"column(codigo_abreviacion);null"`
-	Activo            bool      `orm:"column(activo)"`
-	NumeroOrden       float64   `orm:"column(numero_orden);null"`
-	FechaCreacion     time.Time `orm:"column(fecha_creacion);type(timestamp without time zone)"`
-	FechaModificacion time.Time `orm:"column(fecha_modificacion);type(timestamp without time zone)"`
+type ActividadEconomica struct {
+	Id                      int                 `orm:"column(id);pk;auto"`
+	Nombre                  string              `orm:"column(nombre)"`
+	CodigoAbreviacion       string              `orm:"column(codigo_abreviacion);null"`
+	Activo                  bool                `orm:"column(activo)"`
+	NumeroOrden             float64             `orm:"column(numero_orden);null"`
+	FechaCreacion           time.Time           `orm:"column(fecha_creacion);type(timestamp without time zone)"`
+	FechaModificacion       time.Time           `orm:"column(fecha_modificacion);type(timestamp without time zone)"`
+	ActividadEconomicaPadre *ActividadEconomica `orm:"column(actividad_economica_padre);rel(fk)"`
+	ClasificacionCiiuId     *ClasificacionCiiu  `orm:"column(clasificacion_ciiu_id);rel(fk)"`
 }
 
-func (t *RupTipoEspecialidad) TableName() string {
-	return "rup_tipo_especialidad"
+func (t *ActividadEconomica) TableName() string {
+	return "actividad_economica"
 }
 
 func init() {
-	orm.RegisterModel(new(RupTipoEspecialidad))
+	orm.RegisterModel(new(ActividadEconomica))
 }
 
-// AddRupTipoEspecialidad insert a new RupTipoEspecialidad into database and returns
+// AddActividadEconomica insert a new ActividadEconomica into database and returns
 // last inserted Id on success.
-func AddRupTipoEspecialidad(m *RupTipoEspecialidad) (id int64, err error) {
+func AddActividadEconomica(m *ActividadEconomica) (id int64, err error) {
 	o := orm.NewOrm()
 	id, err = o.Insert(m)
 	return
 }
 
-// GetRupTipoEspecialidadById retrieves RupTipoEspecialidad by Id. Returns error if
+// GetActividadEconomicaById retrieves ActividadEconomica by Id. Returns error if
 // Id doesn't exist
-func GetRupTipoEspecialidadById(id int) (v *RupTipoEspecialidad, err error) {
+func GetActividadEconomicaById(id int) (v *ActividadEconomica, err error) {
 	o := orm.NewOrm()
-	v = &RupTipoEspecialidad{Id: id}
+	v = &ActividadEconomica{Id: id}
 	if err = o.Read(v); err == nil {
 		return v, nil
 	}
 	return nil, err
 }
 
-// GetAllRupTipoEspecialidad retrieves all RupTipoEspecialidad matches certain condition. Returns empty list if
+// GetAllActividadEconomica retrieves all ActividadEconomica matches certain condition. Returns empty list if
 // no records exist
-func GetAllRupTipoEspecialidad(query map[string]string, fields []string, sortby []string, order []string,
+func GetAllActividadEconomica(query map[string]string, fields []string, sortby []string, order []string,
 	offset int64, limit int64) (ml []interface{}, err error) {
 	o := orm.NewOrm()
-	qs := o.QueryTable(new(RupTipoEspecialidad)).RelatedSel()
+	qs := o.QueryTable(new(ActividadEconomica)).RelatedSel()
 	// query k=v
 	for k, v := range query {
 		// rewrite dot-notation to Object__Attribute
@@ -103,7 +104,7 @@ func GetAllRupTipoEspecialidad(query map[string]string, fields []string, sortby 
 		}
 	}
 
-	var l []RupTipoEspecialidad
+	var l []ActividadEconomica
 	qs = qs.OrderBy(sortFields...)
 	if _, err = qs.Limit(limit, offset).All(&l, fields...); err == nil {
 		if len(fields) == 0 {
@@ -126,11 +127,11 @@ func GetAllRupTipoEspecialidad(query map[string]string, fields []string, sortby 
 	return nil, err
 }
 
-// UpdateRupTipoEspecialidad updates RupTipoEspecialidad by Id and returns error if
+// UpdateActividadEconomica updates ActividadEconomica by Id and returns error if
 // the record to be updated doesn't exist
-func UpdateRupTipoEspecialidadById(m *RupTipoEspecialidad) (err error) {
+func UpdateActividadEconomicaById(m *ActividadEconomica) (err error) {
 	o := orm.NewOrm()
-	v := RupTipoEspecialidad{Id: m.Id}
+	v := ActividadEconomica{Id: m.Id}
 	// ascertain id exists in the database
 	if err = o.Read(&v); err == nil {
 		var num int64
@@ -141,15 +142,15 @@ func UpdateRupTipoEspecialidadById(m *RupTipoEspecialidad) (err error) {
 	return
 }
 
-// DeleteRupTipoEspecialidad deletes RupTipoEspecialidad by Id and returns error if
+// DeleteActividadEconomica deletes ActividadEconomica by Id and returns error if
 // the record to be deleted doesn't exist
-func DeleteRupTipoEspecialidad(id int) (err error) {
+func DeleteActividadEconomica(id int) (err error) {
 	o := orm.NewOrm()
-	v := RupTipoEspecialidad{Id: id}
+	v := ActividadEconomica{Id: id}
 	// ascertain id exists in the database
 	if err = o.Read(&v); err == nil {
 		var num int64
-		if num, err = o.Delete(&RupTipoEspecialidad{Id: id}); err == nil {
+		if num, err = o.Delete(&ActividadEconomica{Id: id}); err == nil {
 			fmt.Println("Number of records deleted in database:", num)
 		}
 	}

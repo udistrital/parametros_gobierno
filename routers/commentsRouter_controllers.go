@@ -7,6 +7,51 @@ import (
 
 func init() {
 
+    beego.GlobalControllerRouter["github.com/udistrital/parametros_gobierno/controllers:ActividadEconomicaController"] = append(beego.GlobalControllerRouter["github.com/udistrital/parametros_gobierno/controllers:ActividadEconomicaController"],
+        beego.ControllerComments{
+            Method: "Post",
+            Router: `/`,
+            AllowHTTPMethods: []string{"post"},
+            MethodParams: param.Make(),
+            Filters: nil,
+            Params: nil})
+
+    beego.GlobalControllerRouter["github.com/udistrital/parametros_gobierno/controllers:ActividadEconomicaController"] = append(beego.GlobalControllerRouter["github.com/udistrital/parametros_gobierno/controllers:ActividadEconomicaController"],
+        beego.ControllerComments{
+            Method: "GetAll",
+            Router: `/`,
+            AllowHTTPMethods: []string{"get"},
+            MethodParams: param.Make(),
+            Filters: nil,
+            Params: nil})
+
+    beego.GlobalControllerRouter["github.com/udistrital/parametros_gobierno/controllers:ActividadEconomicaController"] = append(beego.GlobalControllerRouter["github.com/udistrital/parametros_gobierno/controllers:ActividadEconomicaController"],
+        beego.ControllerComments{
+            Method: "GetOne",
+            Router: `/:id`,
+            AllowHTTPMethods: []string{"get"},
+            MethodParams: param.Make(),
+            Filters: nil,
+            Params: nil})
+
+    beego.GlobalControllerRouter["github.com/udistrital/parametros_gobierno/controllers:ActividadEconomicaController"] = append(beego.GlobalControllerRouter["github.com/udistrital/parametros_gobierno/controllers:ActividadEconomicaController"],
+        beego.ControllerComments{
+            Method: "Put",
+            Router: `/:id`,
+            AllowHTTPMethods: []string{"put"},
+            MethodParams: param.Make(),
+            Filters: nil,
+            Params: nil})
+
+    beego.GlobalControllerRouter["github.com/udistrital/parametros_gobierno/controllers:ActividadEconomicaController"] = append(beego.GlobalControllerRouter["github.com/udistrital/parametros_gobierno/controllers:ActividadEconomicaController"],
+        beego.ControllerComments{
+            Method: "Delete",
+            Router: `/:id`,
+            AllowHTTPMethods: []string{"delete"},
+            MethodParams: param.Make(),
+            Filters: nil,
+            Params: nil})
+
     beego.GlobalControllerRouter["github.com/udistrital/parametros_gobierno/controllers:AreaConocimientoController"] = append(beego.GlobalControllerRouter["github.com/udistrital/parametros_gobierno/controllers:AreaConocimientoController"],
         beego.ControllerComments{
             Method: "Post",
@@ -52,7 +97,7 @@ func init() {
             Filters: nil,
             Params: nil})
 
-    beego.GlobalControllerRouter["github.com/udistrital/parametros_gobierno/controllers:IvaController"] = append(beego.GlobalControllerRouter["github.com/udistrital/parametros_gobierno/controllers:IvaController"],
+    beego.GlobalControllerRouter["github.com/udistrital/parametros_gobierno/controllers:ClasificacionCiiuController"] = append(beego.GlobalControllerRouter["github.com/udistrital/parametros_gobierno/controllers:ClasificacionCiiuController"],
         beego.ControllerComments{
             Method: "Post",
             Router: `/`,
@@ -61,7 +106,7 @@ func init() {
             Filters: nil,
             Params: nil})
 
-    beego.GlobalControllerRouter["github.com/udistrital/parametros_gobierno/controllers:IvaController"] = append(beego.GlobalControllerRouter["github.com/udistrital/parametros_gobierno/controllers:IvaController"],
+    beego.GlobalControllerRouter["github.com/udistrital/parametros_gobierno/controllers:ClasificacionCiiuController"] = append(beego.GlobalControllerRouter["github.com/udistrital/parametros_gobierno/controllers:ClasificacionCiiuController"],
         beego.ControllerComments{
             Method: "GetAll",
             Router: `/`,
@@ -70,7 +115,7 @@ func init() {
             Filters: nil,
             Params: nil})
 
-    beego.GlobalControllerRouter["github.com/udistrital/parametros_gobierno/controllers:IvaController"] = append(beego.GlobalControllerRouter["github.com/udistrital/parametros_gobierno/controllers:IvaController"],
+    beego.GlobalControllerRouter["github.com/udistrital/parametros_gobierno/controllers:ClasificacionCiiuController"] = append(beego.GlobalControllerRouter["github.com/udistrital/parametros_gobierno/controllers:ClasificacionCiiuController"],
         beego.ControllerComments{
             Method: "GetOne",
             Router: `/:id`,
@@ -79,7 +124,7 @@ func init() {
             Filters: nil,
             Params: nil})
 
-    beego.GlobalControllerRouter["github.com/udistrital/parametros_gobierno/controllers:IvaController"] = append(beego.GlobalControllerRouter["github.com/udistrital/parametros_gobierno/controllers:IvaController"],
+    beego.GlobalControllerRouter["github.com/udistrital/parametros_gobierno/controllers:ClasificacionCiiuController"] = append(beego.GlobalControllerRouter["github.com/udistrital/parametros_gobierno/controllers:ClasificacionCiiuController"],
         beego.ControllerComments{
             Method: "Put",
             Router: `/:id`,
@@ -88,7 +133,52 @@ func init() {
             Filters: nil,
             Params: nil})
 
-    beego.GlobalControllerRouter["github.com/udistrital/parametros_gobierno/controllers:IvaController"] = append(beego.GlobalControllerRouter["github.com/udistrital/parametros_gobierno/controllers:IvaController"],
+    beego.GlobalControllerRouter["github.com/udistrital/parametros_gobierno/controllers:ClasificacionCiiuController"] = append(beego.GlobalControllerRouter["github.com/udistrital/parametros_gobierno/controllers:ClasificacionCiiuController"],
+        beego.ControllerComments{
+            Method: "Delete",
+            Router: `/:id`,
+            AllowHTTPMethods: []string{"delete"},
+            MethodParams: param.Make(),
+            Filters: nil,
+            Params: nil})
+
+    beego.GlobalControllerRouter["github.com/udistrital/parametros_gobierno/controllers:ImpuestoController"] = append(beego.GlobalControllerRouter["github.com/udistrital/parametros_gobierno/controllers:ImpuestoController"],
+        beego.ControllerComments{
+            Method: "Post",
+            Router: `/`,
+            AllowHTTPMethods: []string{"post"},
+            MethodParams: param.Make(),
+            Filters: nil,
+            Params: nil})
+
+    beego.GlobalControllerRouter["github.com/udistrital/parametros_gobierno/controllers:ImpuestoController"] = append(beego.GlobalControllerRouter["github.com/udistrital/parametros_gobierno/controllers:ImpuestoController"],
+        beego.ControllerComments{
+            Method: "GetAll",
+            Router: `/`,
+            AllowHTTPMethods: []string{"get"},
+            MethodParams: param.Make(),
+            Filters: nil,
+            Params: nil})
+
+    beego.GlobalControllerRouter["github.com/udistrital/parametros_gobierno/controllers:ImpuestoController"] = append(beego.GlobalControllerRouter["github.com/udistrital/parametros_gobierno/controllers:ImpuestoController"],
+        beego.ControllerComments{
+            Method: "GetOne",
+            Router: `/:id`,
+            AllowHTTPMethods: []string{"get"},
+            MethodParams: param.Make(),
+            Filters: nil,
+            Params: nil})
+
+    beego.GlobalControllerRouter["github.com/udistrital/parametros_gobierno/controllers:ImpuestoController"] = append(beego.GlobalControllerRouter["github.com/udistrital/parametros_gobierno/controllers:ImpuestoController"],
+        beego.ControllerComments{
+            Method: "Put",
+            Router: `/:id`,
+            AllowHTTPMethods: []string{"put"},
+            MethodParams: param.Make(),
+            Filters: nil,
+            Params: nil})
+
+    beego.GlobalControllerRouter["github.com/udistrital/parametros_gobierno/controllers:ImpuestoController"] = append(beego.GlobalControllerRouter["github.com/udistrital/parametros_gobierno/controllers:ImpuestoController"],
         beego.ControllerComments{
             Method: "Delete",
             Router: `/:id`,
@@ -359,6 +449,96 @@ func init() {
             Params: nil})
 
     beego.GlobalControllerRouter["github.com/udistrital/parametros_gobierno/controllers:SalarioMinimoController"] = append(beego.GlobalControllerRouter["github.com/udistrital/parametros_gobierno/controllers:SalarioMinimoController"],
+        beego.ControllerComments{
+            Method: "Delete",
+            Router: `/:id`,
+            AllowHTTPMethods: []string{"delete"},
+            MethodParams: param.Make(),
+            Filters: nil,
+            Params: nil})
+
+    beego.GlobalControllerRouter["github.com/udistrital/parametros_gobierno/controllers:TipoImpuestoController"] = append(beego.GlobalControllerRouter["github.com/udistrital/parametros_gobierno/controllers:TipoImpuestoController"],
+        beego.ControllerComments{
+            Method: "Post",
+            Router: `/`,
+            AllowHTTPMethods: []string{"post"},
+            MethodParams: param.Make(),
+            Filters: nil,
+            Params: nil})
+
+    beego.GlobalControllerRouter["github.com/udistrital/parametros_gobierno/controllers:TipoImpuestoController"] = append(beego.GlobalControllerRouter["github.com/udistrital/parametros_gobierno/controllers:TipoImpuestoController"],
+        beego.ControllerComments{
+            Method: "GetAll",
+            Router: `/`,
+            AllowHTTPMethods: []string{"get"},
+            MethodParams: param.Make(),
+            Filters: nil,
+            Params: nil})
+
+    beego.GlobalControllerRouter["github.com/udistrital/parametros_gobierno/controllers:TipoImpuestoController"] = append(beego.GlobalControllerRouter["github.com/udistrital/parametros_gobierno/controllers:TipoImpuestoController"],
+        beego.ControllerComments{
+            Method: "GetOne",
+            Router: `/:id`,
+            AllowHTTPMethods: []string{"get"},
+            MethodParams: param.Make(),
+            Filters: nil,
+            Params: nil})
+
+    beego.GlobalControllerRouter["github.com/udistrital/parametros_gobierno/controllers:TipoImpuestoController"] = append(beego.GlobalControllerRouter["github.com/udistrital/parametros_gobierno/controllers:TipoImpuestoController"],
+        beego.ControllerComments{
+            Method: "Put",
+            Router: `/:id`,
+            AllowHTTPMethods: []string{"put"},
+            MethodParams: param.Make(),
+            Filters: nil,
+            Params: nil})
+
+    beego.GlobalControllerRouter["github.com/udistrital/parametros_gobierno/controllers:TipoImpuestoController"] = append(beego.GlobalControllerRouter["github.com/udistrital/parametros_gobierno/controllers:TipoImpuestoController"],
+        beego.ControllerComments{
+            Method: "Delete",
+            Router: `/:id`,
+            AllowHTTPMethods: []string{"delete"},
+            MethodParams: param.Make(),
+            Filters: nil,
+            Params: nil})
+
+    beego.GlobalControllerRouter["github.com/udistrital/parametros_gobierno/controllers:VigenciaImpuestoController"] = append(beego.GlobalControllerRouter["github.com/udistrital/parametros_gobierno/controllers:VigenciaImpuestoController"],
+        beego.ControllerComments{
+            Method: "Post",
+            Router: `/`,
+            AllowHTTPMethods: []string{"post"},
+            MethodParams: param.Make(),
+            Filters: nil,
+            Params: nil})
+
+    beego.GlobalControllerRouter["github.com/udistrital/parametros_gobierno/controllers:VigenciaImpuestoController"] = append(beego.GlobalControllerRouter["github.com/udistrital/parametros_gobierno/controllers:VigenciaImpuestoController"],
+        beego.ControllerComments{
+            Method: "GetAll",
+            Router: `/`,
+            AllowHTTPMethods: []string{"get"},
+            MethodParams: param.Make(),
+            Filters: nil,
+            Params: nil})
+
+    beego.GlobalControllerRouter["github.com/udistrital/parametros_gobierno/controllers:VigenciaImpuestoController"] = append(beego.GlobalControllerRouter["github.com/udistrital/parametros_gobierno/controllers:VigenciaImpuestoController"],
+        beego.ControllerComments{
+            Method: "GetOne",
+            Router: `/:id`,
+            AllowHTTPMethods: []string{"get"},
+            MethodParams: param.Make(),
+            Filters: nil,
+            Params: nil})
+
+    beego.GlobalControllerRouter["github.com/udistrital/parametros_gobierno/controllers:VigenciaImpuestoController"] = append(beego.GlobalControllerRouter["github.com/udistrital/parametros_gobierno/controllers:VigenciaImpuestoController"],
+        beego.ControllerComments{
+            Method: "Put",
+            Router: `/:id`,
+            AllowHTTPMethods: []string{"put"},
+            MethodParams: param.Make(),
+            Filters: nil,
+            Params: nil})
+
+    beego.GlobalControllerRouter["github.com/udistrital/parametros_gobierno/controllers:VigenciaImpuestoController"] = append(beego.GlobalControllerRouter["github.com/udistrital/parametros_gobierno/controllers:VigenciaImpuestoController"],
         beego.ControllerComments{
             Method: "Delete",
             Router: `/:id`,
