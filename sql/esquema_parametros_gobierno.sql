@@ -521,7 +521,12 @@ FOREIGN KEY (clasificacion_ciiu_id)
 REFERENCES parametros_gobierno.clasificacion_ciiu (id) 
 MATCH FULL ON DELETE SET NULL ON UPDATE CASCADE;
 
-
+--######################################################
+--Cambiar tamaño de columna
+--Migracion: 20190823_105612_cambiar_size_nombre_actividad_economica
+ALTER TABLE parametros_gobierno.actividad_economica 
+ALTER COLUMN nombre type character varying(255);
+--######################################################
 
 
 
