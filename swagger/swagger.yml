@@ -11,6 +11,121 @@ info:
     url: http://www.apache.org/licenses/LICENSE-2.0.html
 basePath: /v1
 paths:
+  /actividad_economica/:
+    get:
+      tags:
+      - actividad_economica
+      description: get ActividadEconomica
+      operationId: ActividadEconomicaController.Get All
+      parameters:
+      - in: query
+        name: query
+        description: Filter. e.g. col1:v1,col2:v2 ...
+        type: string
+      - in: query
+        name: fields
+        description: Fields returned. e.g. col1,col2 ...
+        type: string
+      - in: query
+        name: sortby
+        description: Sorted-by fields. e.g. col1,col2 ...
+        type: string
+      - in: query
+        name: order
+        description: Order corresponding to each sortby field, if single value, apply
+          to all sortby fields. e.g. desc,asc ...
+        type: string
+      - in: query
+        name: limit
+        description: Limit the size of result set. Must be an integer
+        type: string
+      - in: query
+        name: offset
+        description: Start position of result set. Must be an integer
+        type: string
+      responses:
+        "200":
+          description: ""
+          schema:
+            $ref: '#/definitions/models.ActividadEconomica'
+        "403":
+          description: ""
+    post:
+      tags:
+      - actividad_economica
+      description: create ActividadEconomica
+      operationId: ActividadEconomicaController.Post
+      parameters:
+      - in: body
+        name: body
+        description: body for ActividadEconomica content
+        required: true
+        schema:
+          $ref: '#/definitions/models.ActividadEconomica'
+      responses:
+        "201":
+          description: '{int} models.ActividadEconomica'
+        "403":
+          description: body is empty
+  /actividad_economica/{id}:
+    get:
+      tags:
+      - actividad_economica
+      description: get ActividadEconomica by id
+      operationId: ActividadEconomicaController.Get One
+      parameters:
+      - in: path
+        name: id
+        description: The key for staticblock
+        required: true
+        type: string
+      responses:
+        "200":
+          description: ""
+          schema:
+            $ref: '#/definitions/models.ActividadEconomica'
+        "403":
+          description: :id is empty
+    put:
+      tags:
+      - actividad_economica
+      description: update the ActividadEconomica
+      operationId: ActividadEconomicaController.Put
+      parameters:
+      - in: path
+        name: id
+        description: The id you want to update
+        required: true
+        type: string
+      - in: body
+        name: body
+        description: body for ActividadEconomica content
+        required: true
+        schema:
+          $ref: '#/definitions/models.ActividadEconomica'
+      responses:
+        "200":
+          description: ""
+          schema:
+            $ref: '#/definitions/models.ActividadEconomica'
+        "403":
+          description: :id is not int
+    delete:
+      tags:
+      - actividad_economica
+      description: delete the ActividadEconomica
+      operationId: ActividadEconomicaController.Delete
+      parameters:
+      - in: path
+        name: id
+        description: The id you want to delete
+        required: true
+        type: string
+      responses:
+        "200":
+          description: '{string} delete success!'
+        "403":
+          description: id is empty
   /area_conocimiento/:
     get:
       tags:
@@ -126,6 +241,351 @@ paths:
           description: '{string} delete success!'
         "403":
           description: id is empty
+  /clasificacion_ciiu/:
+    get:
+      tags:
+      - clasificacion_ciiu
+      description: get ClasificacionCiiu
+      operationId: ClasificacionCiiuController.Get All
+      parameters:
+      - in: query
+        name: query
+        description: Filter. e.g. col1:v1,col2:v2 ...
+        type: string
+      - in: query
+        name: fields
+        description: Fields returned. e.g. col1,col2 ...
+        type: string
+      - in: query
+        name: sortby
+        description: Sorted-by fields. e.g. col1,col2 ...
+        type: string
+      - in: query
+        name: order
+        description: Order corresponding to each sortby field, if single value, apply
+          to all sortby fields. e.g. desc,asc ...
+        type: string
+      - in: query
+        name: limit
+        description: Limit the size of result set. Must be an integer
+        type: string
+      - in: query
+        name: offset
+        description: Start position of result set. Must be an integer
+        type: string
+      responses:
+        "200":
+          description: ""
+          schema:
+            $ref: '#/definitions/models.ClasificacionCiiu'
+        "403":
+          description: ""
+    post:
+      tags:
+      - clasificacion_ciiu
+      description: create ClasificacionCiiu
+      operationId: ClasificacionCiiuController.Post
+      parameters:
+      - in: body
+        name: body
+        description: body for ClasificacionCiiu content
+        required: true
+        schema:
+          $ref: '#/definitions/models.ClasificacionCiiu'
+      responses:
+        "201":
+          description: '{int} models.ClasificacionCiiu'
+        "403":
+          description: body is empty
+  /clasificacion_ciiu/{id}:
+    get:
+      tags:
+      - clasificacion_ciiu
+      description: get ClasificacionCiiu by id
+      operationId: ClasificacionCiiuController.Get One
+      parameters:
+      - in: path
+        name: id
+        description: The key for staticblock
+        required: true
+        type: string
+      responses:
+        "200":
+          description: ""
+          schema:
+            $ref: '#/definitions/models.ClasificacionCiiu'
+        "403":
+          description: :id is empty
+    put:
+      tags:
+      - clasificacion_ciiu
+      description: update the ClasificacionCiiu
+      operationId: ClasificacionCiiuController.Put
+      parameters:
+      - in: path
+        name: id
+        description: The id you want to update
+        required: true
+        type: string
+      - in: body
+        name: body
+        description: body for ClasificacionCiiu content
+        required: true
+        schema:
+          $ref: '#/definitions/models.ClasificacionCiiu'
+      responses:
+        "200":
+          description: ""
+          schema:
+            $ref: '#/definitions/models.ClasificacionCiiu'
+        "403":
+          description: :id is not int
+    delete:
+      tags:
+      - clasificacion_ciiu
+      description: delete the ClasificacionCiiu
+      operationId: ClasificacionCiiuController.Delete
+      parameters:
+      - in: path
+        name: id
+        description: The id you want to delete
+        required: true
+        type: string
+      responses:
+        "200":
+          description: '{string} delete success!'
+        "403":
+          description: id is empty
+  /impuesto/:
+    get:
+      tags:
+      - impuesto
+      description: get Impuesto
+      operationId: ImpuestoController.Get All
+      parameters:
+      - in: query
+        name: query
+        description: Filter. e.g. col1:v1,col2:v2 ...
+        type: string
+      - in: query
+        name: fields
+        description: Fields returned. e.g. col1,col2 ...
+        type: string
+      - in: query
+        name: sortby
+        description: Sorted-by fields. e.g. col1,col2 ...
+        type: string
+      - in: query
+        name: order
+        description: Order corresponding to each sortby field, if single value, apply
+          to all sortby fields. e.g. desc,asc ...
+        type: string
+      - in: query
+        name: limit
+        description: Limit the size of result set. Must be an integer
+        type: string
+      - in: query
+        name: offset
+        description: Start position of result set. Must be an integer
+        type: string
+      responses:
+        "200":
+          description: ""
+          schema:
+            $ref: '#/definitions/models.Impuesto'
+        "403":
+          description: ""
+    post:
+      tags:
+      - impuesto
+      description: create Impuesto
+      operationId: ImpuestoController.Post
+      parameters:
+      - in: body
+        name: body
+        description: body for Impuesto content
+        required: true
+        schema:
+          $ref: '#/definitions/models.Impuesto'
+      responses:
+        "201":
+          description: '{int} models.Impuesto'
+        "403":
+          description: body is empty
+  /impuesto/{id}:
+    get:
+      tags:
+      - impuesto
+      description: get Impuesto by id
+      operationId: ImpuestoController.Get One
+      parameters:
+      - in: path
+        name: id
+        description: The key for staticblock
+        required: true
+        type: string
+      responses:
+        "200":
+          description: ""
+          schema:
+            $ref: '#/definitions/models.Impuesto'
+        "403":
+          description: :id is empty
+    put:
+      tags:
+      - impuesto
+      description: update the Impuesto
+      operationId: ImpuestoController.Put
+      parameters:
+      - in: path
+        name: id
+        description: The id you want to update
+        required: true
+        type: string
+      - in: body
+        name: body
+        description: body for Impuesto content
+        required: true
+        schema:
+          $ref: '#/definitions/models.Impuesto'
+      responses:
+        "200":
+          description: ""
+          schema:
+            $ref: '#/definitions/models.Impuesto'
+        "403":
+          description: :id is not int
+    delete:
+      tags:
+      - impuesto
+      description: delete the Impuesto
+      operationId: ImpuestoController.Delete
+      parameters:
+      - in: path
+        name: id
+        description: The id you want to delete
+        required: true
+        type: string
+      responses:
+        "200":
+          description: '{string} delete success!'
+        "403":
+          description: id is empty
+  /iva/:
+    get:
+      tags:
+      - iva
+      description: get PuntoSalarial
+      operationId: PuntoSalarialController.Get All
+      parameters:
+      - in: query
+        name: query
+        description: Filter. e.g. col1:v1,col2:v2 ...
+        type: string
+      - in: query
+        name: fields
+        description: Fields returned. e.g. col1,col2 ...
+        type: string
+      - in: query
+        name: sortby
+        description: Sorted-by fields. e.g. col1,col2 ...
+        type: string
+      - in: query
+        name: order
+        description: Order corresponding to each sortby field, if single value, apply
+          to all sortby fields. e.g. desc,asc ...
+        type: string
+      - in: query
+        name: limit
+        description: Limit the size of result set. Must be an integer
+        type: string
+      - in: query
+        name: offset
+        description: Start position of result set. Must be an integer
+        type: string
+      responses:
+        "200":
+          description: ""
+          schema:
+            $ref: '#/definitions/models.PuntoSalarial'
+        "403":
+          description: ""
+    post:
+      tags:
+      - iva
+      description: create PuntoSalarial
+      operationId: PuntoSalarialController.Post
+      parameters:
+      - in: body
+        name: body
+        description: body for PuntoSalarial content
+        required: true
+        schema:
+          $ref: '#/definitions/models.PuntoSalarial'
+      responses:
+        "201":
+          description: '{int} models.PuntoSalarial'
+        "403":
+          description: body is empty
+  /iva/{id}:
+    get:
+      tags:
+      - iva
+      description: get PuntoSalarial by id
+      operationId: PuntoSalarialController.Get One
+      parameters:
+      - in: path
+        name: id
+        description: The key for staticblock
+        required: true
+        type: string
+      responses:
+        "200":
+          description: ""
+          schema:
+            $ref: '#/definitions/models.PuntoSalarial'
+        "403":
+          description: :id is empty
+    put:
+      tags:
+      - iva
+      description: update the PuntoSalarial
+      operationId: PuntoSalarialController.Put
+      parameters:
+      - in: path
+        name: id
+        description: The id you want to update
+        required: true
+        type: string
+      - in: body
+        name: body
+        description: body for PuntoSalarial content
+        required: true
+        schema:
+          $ref: '#/definitions/models.PuntoSalarial'
+      responses:
+        "200":
+          description: ""
+          schema:
+            $ref: '#/definitions/models.PuntoSalarial'
+        "403":
+          description: :id is not int
+    delete:
+      tags:
+      - iva
+      description: delete the PuntoSalarial
+      operationId: PuntoSalarialController.Delete
+      parameters:
+      - in: path
+        name: id
+        description: The id you want to delete
+        required: true
+        type: string
+      responses:
+        "200":
+          description: '{string} delete success!'
+        "403":
+          description: id is empty
   /nucleo_basico_conocimiento/:
     get:
       tags:
@@ -230,6 +690,121 @@ paths:
       - nucleo_basico_conocimiento
       description: delete the NucleoBasicoConocimiento
       operationId: NucleoBasicoConocimientoController.Delete
+      parameters:
+      - in: path
+        name: id
+        description: The id you want to delete
+        required: true
+        type: string
+      responses:
+        "200":
+          description: '{string} delete success!'
+        "403":
+          description: id is empty
+  /punto_salarial/:
+    get:
+      tags:
+      - iva
+      description: get PuntoSalarial
+      operationId: PuntoSalarialController.Get All
+      parameters:
+      - in: query
+        name: query
+        description: Filter. e.g. col1:v1,col2:v2 ...
+        type: string
+      - in: query
+        name: fields
+        description: Fields returned. e.g. col1,col2 ...
+        type: string
+      - in: query
+        name: sortby
+        description: Sorted-by fields. e.g. col1,col2 ...
+        type: string
+      - in: query
+        name: order
+        description: Order corresponding to each sortby field, if single value, apply
+          to all sortby fields. e.g. desc,asc ...
+        type: string
+      - in: query
+        name: limit
+        description: Limit the size of result set. Must be an integer
+        type: string
+      - in: query
+        name: offset
+        description: Start position of result set. Must be an integer
+        type: string
+      responses:
+        "200":
+          description: ""
+          schema:
+            $ref: '#/definitions/models.PuntoSalarial'
+        "403":
+          description: ""
+    post:
+      tags:
+      - iva
+      description: create PuntoSalarial
+      operationId: PuntoSalarialController.Post
+      parameters:
+      - in: body
+        name: body
+        description: body for PuntoSalarial content
+        required: true
+        schema:
+          $ref: '#/definitions/models.PuntoSalarial'
+      responses:
+        "201":
+          description: '{int} models.PuntoSalarial'
+        "403":
+          description: body is empty
+  /punto_salarial/{id}:
+    get:
+      tags:
+      - iva
+      description: get PuntoSalarial by id
+      operationId: PuntoSalarialController.Get One
+      parameters:
+      - in: path
+        name: id
+        description: The key for staticblock
+        required: true
+        type: string
+      responses:
+        "200":
+          description: ""
+          schema:
+            $ref: '#/definitions/models.PuntoSalarial'
+        "403":
+          description: :id is empty
+    put:
+      tags:
+      - iva
+      description: update the PuntoSalarial
+      operationId: PuntoSalarialController.Put
+      parameters:
+      - in: path
+        name: id
+        description: The id you want to update
+        required: true
+        type: string
+      - in: body
+        name: body
+        description: body for PuntoSalarial content
+        required: true
+        schema:
+          $ref: '#/definitions/models.PuntoSalarial'
+      responses:
+        "200":
+          description: ""
+          schema:
+            $ref: '#/definitions/models.PuntoSalarial'
+        "403":
+          description: :id is not int
+    delete:
+      tags:
+      - iva
+      description: delete the PuntoSalarial
+      operationId: PuntoSalarialController.Delete
       parameters:
       - in: path
         name: id
@@ -586,7 +1161,378 @@ paths:
           description: '{string} delete success!'
         "403":
           description: id is empty
+  /salario_minimo/:
+    get:
+      tags:
+      - salario_minimo
+      description: get SalarioMinimo
+      operationId: SalarioMinimoController.Get All
+      parameters:
+      - in: query
+        name: query
+        description: Filter. e.g. col1:v1,col2:v2 ...
+        type: string
+      - in: query
+        name: fields
+        description: Fields returned. e.g. col1,col2 ...
+        type: string
+      - in: query
+        name: sortby
+        description: Sorted-by fields. e.g. col1,col2 ...
+        type: string
+      - in: query
+        name: order
+        description: Order corresponding to each sortby field, if single value, apply
+          to all sortby fields. e.g. desc,asc ...
+        type: string
+      - in: query
+        name: limit
+        description: Limit the size of result set. Must be an integer
+        type: string
+      - in: query
+        name: offset
+        description: Start position of result set. Must be an integer
+        type: string
+      responses:
+        "200":
+          description: ""
+          schema:
+            $ref: '#/definitions/models.SalarioMinimo'
+        "403":
+          description: ""
+    post:
+      tags:
+      - salario_minimo
+      description: create SalarioMinimo
+      operationId: SalarioMinimoController.Post
+      parameters:
+      - in: body
+        name: body
+        description: body for SalarioMinimo content
+        required: true
+        schema:
+          $ref: '#/definitions/models.SalarioMinimo'
+      responses:
+        "201":
+          description: '{int} models.SalarioMinimo'
+        "403":
+          description: body is empty
+  /salario_minimo/{id}:
+    get:
+      tags:
+      - salario_minimo
+      description: get SalarioMinimo by id
+      operationId: SalarioMinimoController.Get One
+      parameters:
+      - in: path
+        name: id
+        description: The key for staticblock
+        required: true
+        type: string
+      responses:
+        "200":
+          description: ""
+          schema:
+            $ref: '#/definitions/models.SalarioMinimo'
+        "403":
+          description: :id is empty
+    put:
+      tags:
+      - salario_minimo
+      description: update the SalarioMinimo
+      operationId: SalarioMinimoController.Put
+      parameters:
+      - in: path
+        name: id
+        description: The id you want to update
+        required: true
+        type: string
+      - in: body
+        name: body
+        description: body for SalarioMinimo content
+        required: true
+        schema:
+          $ref: '#/definitions/models.SalarioMinimo'
+      responses:
+        "200":
+          description: ""
+          schema:
+            $ref: '#/definitions/models.SalarioMinimo'
+        "403":
+          description: :id is not int
+    delete:
+      tags:
+      - salario_minimo
+      description: delete the SalarioMinimo
+      operationId: SalarioMinimoController.Delete
+      parameters:
+      - in: path
+        name: id
+        description: The id you want to delete
+        required: true
+        type: string
+      responses:
+        "200":
+          description: '{string} delete success!'
+        "403":
+          description: id is empty
+  /tipo_impuesto/:
+    get:
+      tags:
+      - tipo_impuesto
+      description: get TipoImpuesto
+      operationId: TipoImpuestoController.Get All
+      parameters:
+      - in: query
+        name: query
+        description: Filter. e.g. col1:v1,col2:v2 ...
+        type: string
+      - in: query
+        name: fields
+        description: Fields returned. e.g. col1,col2 ...
+        type: string
+      - in: query
+        name: sortby
+        description: Sorted-by fields. e.g. col1,col2 ...
+        type: string
+      - in: query
+        name: order
+        description: Order corresponding to each sortby field, if single value, apply
+          to all sortby fields. e.g. desc,asc ...
+        type: string
+      - in: query
+        name: limit
+        description: Limit the size of result set. Must be an integer
+        type: string
+      - in: query
+        name: offset
+        description: Start position of result set. Must be an integer
+        type: string
+      responses:
+        "200":
+          description: ""
+          schema:
+            $ref: '#/definitions/models.TipoImpuesto'
+        "403":
+          description: ""
+    post:
+      tags:
+      - tipo_impuesto
+      description: create TipoImpuesto
+      operationId: TipoImpuestoController.Post
+      parameters:
+      - in: body
+        name: body
+        description: body for TipoImpuesto content
+        required: true
+        schema:
+          $ref: '#/definitions/models.TipoImpuesto'
+      responses:
+        "201":
+          description: '{int} models.TipoImpuesto'
+        "403":
+          description: body is empty
+  /tipo_impuesto/{id}:
+    get:
+      tags:
+      - tipo_impuesto
+      description: get TipoImpuesto by id
+      operationId: TipoImpuestoController.Get One
+      parameters:
+      - in: path
+        name: id
+        description: The key for staticblock
+        required: true
+        type: string
+      responses:
+        "200":
+          description: ""
+          schema:
+            $ref: '#/definitions/models.TipoImpuesto'
+        "403":
+          description: :id is empty
+    put:
+      tags:
+      - tipo_impuesto
+      description: update the TipoImpuesto
+      operationId: TipoImpuestoController.Put
+      parameters:
+      - in: path
+        name: id
+        description: The id you want to update
+        required: true
+        type: string
+      - in: body
+        name: body
+        description: body for TipoImpuesto content
+        required: true
+        schema:
+          $ref: '#/definitions/models.TipoImpuesto'
+      responses:
+        "200":
+          description: ""
+          schema:
+            $ref: '#/definitions/models.TipoImpuesto'
+        "403":
+          description: :id is not int
+    delete:
+      tags:
+      - tipo_impuesto
+      description: delete the TipoImpuesto
+      operationId: TipoImpuestoController.Delete
+      parameters:
+      - in: path
+        name: id
+        description: The id you want to delete
+        required: true
+        type: string
+      responses:
+        "200":
+          description: '{string} delete success!'
+        "403":
+          description: id is empty
+  /vigencia_impuesto/:
+    get:
+      tags:
+      - vigencia_impuesto
+      description: get VigenciaImpuesto
+      operationId: VigenciaImpuestoController.Get All
+      parameters:
+      - in: query
+        name: query
+        description: Filter. e.g. col1:v1,col2:v2 ...
+        type: string
+      - in: query
+        name: fields
+        description: Fields returned. e.g. col1,col2 ...
+        type: string
+      - in: query
+        name: sortby
+        description: Sorted-by fields. e.g. col1,col2 ...
+        type: string
+      - in: query
+        name: order
+        description: Order corresponding to each sortby field, if single value, apply
+          to all sortby fields. e.g. desc,asc ...
+        type: string
+      - in: query
+        name: limit
+        description: Limit the size of result set. Must be an integer
+        type: string
+      - in: query
+        name: offset
+        description: Start position of result set. Must be an integer
+        type: string
+      responses:
+        "200":
+          description: ""
+          schema:
+            $ref: '#/definitions/models.VigenciaImpuesto'
+        "403":
+          description: ""
+    post:
+      tags:
+      - vigencia_impuesto
+      description: create VigenciaImpuesto
+      operationId: VigenciaImpuestoController.Post
+      parameters:
+      - in: body
+        name: body
+        description: body for VigenciaImpuesto content
+        required: true
+        schema:
+          $ref: '#/definitions/models.VigenciaImpuesto'
+      responses:
+        "201":
+          description: '{int} models.VigenciaImpuesto'
+        "403":
+          description: body is empty
+  /vigencia_impuesto/{id}:
+    get:
+      tags:
+      - vigencia_impuesto
+      description: get VigenciaImpuesto by id
+      operationId: VigenciaImpuestoController.Get One
+      parameters:
+      - in: path
+        name: id
+        description: The key for staticblock
+        required: true
+        type: string
+      responses:
+        "200":
+          description: ""
+          schema:
+            $ref: '#/definitions/models.VigenciaImpuesto'
+        "403":
+          description: :id is empty
+    put:
+      tags:
+      - vigencia_impuesto
+      description: update the VigenciaImpuesto
+      operationId: VigenciaImpuestoController.Put
+      parameters:
+      - in: path
+        name: id
+        description: The id you want to update
+        required: true
+        type: string
+      - in: body
+        name: body
+        description: body for VigenciaImpuesto content
+        required: true
+        schema:
+          $ref: '#/definitions/models.VigenciaImpuesto'
+      responses:
+        "200":
+          description: ""
+          schema:
+            $ref: '#/definitions/models.VigenciaImpuesto'
+        "403":
+          description: :id is not int
+    delete:
+      tags:
+      - vigencia_impuesto
+      description: delete the VigenciaImpuesto
+      operationId: VigenciaImpuestoController.Delete
+      parameters:
+      - in: path
+        name: id
+        description: The id you want to delete
+        required: true
+        type: string
+      responses:
+        "200":
+          description: '{string} delete success!'
+        "403":
+          description: id is empty
 definitions:
+  models.ActividadEconomica:
+    title: ActividadEconomica
+    type: object
+    properties:
+      ActividadEconomicaPadre:
+        $ref: '#/definitions/models.ActividadEconomica'
+      Activo:
+        type: boolean
+      ClasificacionCiiuId:
+        $ref: '#/definitions/models.ClasificacionCiiu'
+      CodigoAbreviacion:
+        type: string
+      FechaCreacion:
+        type: string
+        format: string
+      FechaModificacion:
+        type: string
+        format: string
+      Id:
+        type: integer
+        format: int64
+      Nombre:
+        type: string
+      NumeroOrden:
+        type: number
+        format: double
   models.AreaConocimiento:
     title: AreaConocimiento
     type: object
@@ -611,6 +1557,56 @@ definitions:
       NumeroOrden:
         type: number
         format: double
+  models.ClasificacionCiiu:
+    title: ClasificacionCiiu
+    type: object
+    properties:
+      Activo:
+        type: boolean
+      CodigoAbreviacion:
+        type: string
+      Descripcion:
+        type: string
+      FechaCreacion:
+        type: string
+        format: string
+      FechaModificacion:
+        type: string
+        format: string
+      Id:
+        type: integer
+        format: int64
+      Nombre:
+        type: string
+      NumeroOrden:
+        type: number
+        format: double
+  models.Impuesto:
+    title: Impuesto
+    type: object
+    properties:
+      Activo:
+        type: boolean
+      CodigoAbreviacion:
+        type: string
+      Descripcion:
+        type: string
+      FechaCreacion:
+        type: string
+        format: string
+      FechaModificacion:
+        type: string
+        format: string
+      Id:
+        type: integer
+        format: int64
+      Nombre:
+        type: string
+      NumeroOrden:
+        type: number
+        format: double
+      TipoImpuestoId:
+        $ref: '#/definitions/models.TipoImpuesto'
   models.NucleoBasicoConocimiento:
     title: NucleoBasicoConocimiento
     type: object
@@ -635,6 +1631,29 @@ definitions:
       Nombre:
         type: string
       NumeroOrden:
+        type: number
+        format: double
+  models.PuntoSalarial:
+    title: PuntoSalarial
+    type: object
+    properties:
+      Activo:
+        type: boolean
+      Decreto:
+        type: string
+      FechaCreacion:
+        type: string
+        format: string
+      FechaModificacion:
+        type: string
+        format: string
+      Id:
+        type: integer
+        format: int64
+      Valor:
+        type: number
+        format: double
+      Vigencia:
         type: number
         format: double
   models.RupEspecialidad:
@@ -687,8 +1706,8 @@ definitions:
       NumeroOrden:
         type: number
         format: double
-      RupTipoEspecialidadId:
-        $ref: '#/definitions/models.RupTipoEspecialidad'
+      RupEspecialidadId:
+        $ref: '#/definitions/models.RupEspecialidad'
   models.RupTipoEspecialidad:
     title: RupTipoEspecialidad
     type: object
@@ -713,6 +1732,90 @@ definitions:
       NumeroOrden:
         type: number
         format: double
+  models.SalarioMinimo:
+    title: SalarioMinimo
+    type: object
+    properties:
+      Activo:
+        type: boolean
+      Decreto:
+        type: string
+      FechaCreacion:
+        type: string
+        format: string
+      FechaModificacion:
+        type: string
+        format: string
+      Id:
+        type: integer
+        format: int64
+      Valor:
+        type: number
+        format: double
+      Vigencia:
+        type: number
+        format: double
+  models.TipoImpuesto:
+    title: TipoImpuesto
+    type: object
+    properties:
+      Activo:
+        type: boolean
+      CodigoAbreviacion:
+        type: string
+      Descripcion:
+        type: string
+      FechaCreacion:
+        type: string
+        format: string
+      FechaModificacion:
+        type: string
+        format: string
+      Id:
+        type: integer
+        format: int64
+      Nombre:
+        type: string
+      NumeroOrden:
+        type: number
+        format: double
+  models.VigenciaImpuesto:
+    title: VigenciaImpuesto
+    type: object
+    properties:
+      Activo:
+        type: boolean
+      BasePesos:
+        type: number
+        format: double
+      BaseUvt:
+        type: integer
+        format: int64
+      Decreto:
+        type: string
+      FechaCreacion:
+        type: string
+        format: string
+      FechaModificacion:
+        type: string
+        format: string
+      FinVigencia:
+        type: string
+        format: string
+      Id:
+        type: integer
+        format: int64
+      ImpuestoId:
+        $ref: '#/definitions/models.Impuesto'
+      InicioVigencia:
+        type: string
+        format: string
+      PorcentajeAplicacion:
+        type: number
+        format: double
+      Tarifa:
+        type: number
+        format: double
 tags:
 - name: nucleo_basico_conocimiento
   description: |
@@ -729,3 +1832,27 @@ tags:
 - name: area_conocimiento
   description: |
     AreaConocimientoController operations for AreaConocimiento
+- name: salario_minimo
+  description: |
+    SalarioMinimoController operations for SalarioMinimo
+- name: punto_salarial
+  description: |
+    PuntoSalarialController operations for PuntoSalarial
+- name: iva
+  description: |
+    PuntoSalarialController operations for PuntoSalarial
+- name: clasificacion_ciiu
+  description: |
+    ClasificacionCiiuController operations for ClasificacionCiiu
+- name: actividad_economica
+  description: |
+    ActividadEconomicaController operations for ActividadEconomica
+- name: tipo_impuesto
+  description: |
+    TipoImpuestoController operations for TipoImpuesto
+- name: impuesto
+  description: |
+    ImpuestoController operations for Impuesto
+- name: vigencia_impuesto
+  description: |
+    VigenciaImpuestoController operations for VigenciaImpuesto
