@@ -23,7 +23,7 @@ pipeline:
     commands:
      - go get -t
      - go get -u github.com/beego/bee
-     - bee migrate -driver=postgres -conn="postgres://$${PG_CORE_USER}:$${PG_CORE_PASSWORD}@$${PG_CORE_URL}:5432/$${PG_CORE_DBNAME}?sslmode=disable"
+     - bee migrate -driver=postgres -conn="postgres://$${PG_MIGRATION_USER}:$${PG_MIGRATION_PASS}@$${PG_MIGRATION_URL}:5432/$${PG_MIGRATION_DBNAME}?sslmode=disable"
     when:
       branch: [test]
 
@@ -34,7 +34,7 @@ pipeline:
     commands:
      - go get -t
      - go get -u github.com/beego/bee
-     - bee migrate rollback -driver=postgres -conn="postgres://$${PG_CORE_USER}:$${PG_CORE_PASSWORD}@$${PG_CORE_URL}:5432/$${PG_CORE_DBNAME}?sslmode=disable"
+     - bee migrate rollback -driver=postgres -conn="postgres://$${PG_MIGRATION_USER}:$${PG_MIGRATION_PASS}@$${PG_MIGRATION_URL}:5432/$${PG_MIGRATION_DBNAME}?sslmode=disable"
     when:
       status: [failure]
       branch: [test]
