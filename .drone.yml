@@ -1,3 +1,10 @@
+workspace:
+  base: /go
+  path: src/github.com/udistrital/${DRONE_REPO##udistrital/}
+  when:
+      branch:
+      - master
+      - test
 kind: pipeline
 name: API_deploy
 
