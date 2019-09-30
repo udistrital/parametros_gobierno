@@ -4,6 +4,8 @@ API CRUD para la gestión de información definida por el gobierno para las enti
 
 Este proyecto está escrito en el lenguaje Go, generado mediante el framework [Beego](https://beego.me/).
 
+
+
 ## Modelo de Datos
 ![entrada](https://github.com/udistrital/parametros_gobierno/blob/dev/sql/parametros_gobierno.png)
 
