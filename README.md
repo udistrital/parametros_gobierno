@@ -1,6 +1,6 @@
 # parametros_gobierno
 
-Descripción
+API CRUD para la gestión de información definida por el gobierno para las entidades
 
 ## Especificaciones Técnicas
 
@@ -68,6 +68,11 @@ Pruebas unitarias
 ```shell
 # En Proceso
 ```
+
+## Modelo de Datos
+[Modelo de Datos Parametros Gobierno](/sql/parametros_gobierno.png)
+
+
 ## Estado CI
 
 | Develop | Relese 0.0.1 | Master |
@@ -84,27 +89,3 @@ parametros_gobierno is free software: you can redistribute it and/or modify it u
 parametros_gobierno is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
 
 You should have received a copy of the GNU General Public License along with parametros_gobierno. If not, see https://www.gnu.org/licenses/.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
---------
-
-# :post_office: Parámetros Gobierno
-
-API CRUD para la gestión de información definida por el gobierno para las entidades que se muestran a continuación.
-
-
-## Modelo de Datos
-![entrada](https://github.com/udistrital/parametros_gobierno/blob/dev/sql/parametros_gobierno.png)
