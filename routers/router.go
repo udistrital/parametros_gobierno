@@ -57,6 +57,42 @@ func init() {
 				&controllers.PuntoSalarialController{},
 			),
 		),
+
+		beego.NSNamespace("/iva",
+			beego.NSInclude(
+				&controllers.PuntoSalarialController{},
+			),
+		),
+
+		beego.NSNamespace("/clasificacion_ciiu",
+			beego.NSInclude(
+				&controllers.ClasificacionCiiuController{},
+			),
+		),
+
+		beego.NSNamespace("/actividad_economica",
+			beego.NSInclude(
+				&controllers.ActividadEconomicaController{},
+			),
+		),
+
+		beego.NSNamespace("/tipo_impuesto",
+			beego.NSInclude(
+				&controllers.TipoImpuestoController{},
+			),
+		),
+
+		beego.NSNamespace("/impuesto",
+			beego.NSInclude(
+				&controllers.ImpuestoController{},
+			),
+		),
+
+		beego.NSNamespace("/vigencia_impuesto",
+			beego.NSInclude(
+				&controllers.VigenciaImpuestoController{},
+			),
+		),
 	)
 	beego.AddNamespace(ns)
 }

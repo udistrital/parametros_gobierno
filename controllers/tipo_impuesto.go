@@ -12,13 +12,13 @@ import (
 	"github.com/astaxie/beego/logs"
 )
 
-// RupTipoEspecialidadController operations for RupTipoEspecialidad
-type RupTipoEspecialidadController struct {
+// TipoImpuestoController operations for TipoImpuesto
+type TipoImpuestoController struct {
 	beego.Controller
 }
 
 // URLMapping ...
-func (c *RupTipoEspecialidadController) URLMapping() {
+func (c *TipoImpuestoController) URLMapping() {
 	c.Mapping("Post", c.Post)
 	c.Mapping("GetOne", c.GetOne)
 	c.Mapping("GetAll", c.GetAll)
@@ -28,15 +28,15 @@ func (c *RupTipoEspecialidadController) URLMapping() {
 
 // Post ...
 // @Title Post
-// @Description create RupTipoEspecialidad
-// @Param	body		body 	models.RupTipoEspecialidad	true		"body for RupTipoEspecialidad content"
-// @Success 201 {int} models.RupTipoEspecialidad
+// @Description create TipoImpuesto
+// @Param	body		body 	models.TipoImpuesto	true		"body for TipoImpuesto content"
+// @Success 201 {int} models.TipoImpuesto
 // @Failure 400 the request contains incorrect syntax
 // @router / [post]
-func (c *RupTipoEspecialidadController) Post() {
-	var v models.RupTipoEspecialidad
+func (c *TipoImpuestoController) Post() {
+	var v models.TipoImpuesto
 	if err := json.Unmarshal(c.Ctx.Input.RequestBody, &v); err == nil {
-		if _, err := models.AddRupTipoEspecialidad(&v); err == nil {
+		if _, err := models.AddTipoImpuesto(&v); err == nil {
 			c.Ctx.Output.SetStatus(201)
 			c.Data["json"] = v
 		} else {
@@ -56,15 +56,15 @@ func (c *RupTipoEspecialidadController) Post() {
 
 // GetOne ...
 // @Title Get One
-// @Description get RupTipoEspecialidad by id
+// @Description get TipoImpuesto by id
 // @Param	id		path 	string	true		"The key for staticblock"
-// @Success 200 {object} models.RupTipoEspecialidad
+// @Success 200 {object} models.TipoImpuesto
 // @Failure 404 not found resource
 // @router /:id [get]
-func (c *RupTipoEspecialidadController) GetOne() {
+func (c *TipoImpuestoController) GetOne() {
 	idStr := c.Ctx.Input.Param(":id")
 	id, _ := strconv.Atoi(idStr)
-	v, err := models.GetRupTipoEspecialidadById(id)
+	v, err := models.GetTipoImpuestoById(id)
 	if err != nil {
 		logs.Error(err)
 		//c.Data["development"] = map[string]interface{}{"Code": "000", "Body": err.Error(), "Type": "error"}
@@ -78,17 +78,17 @@ func (c *RupTipoEspecialidadController) GetOne() {
 
 // GetAll ...
 // @Title Get All
-// @Description get RupTipoEspecialidad
+// @Description get TipoImpuesto
 // @Param	query	query	string	false	"Filter. e.g. col1:v1,col2:v2 ..."
 // @Param	fields	query	string	false	"Fields returned. e.g. col1,col2 ..."
 // @Param	sortby	query	string	false	"Sorted-by fields. e.g. col1,col2 ..."
 // @Param	order	query	string	false	"Order corresponding to each sortby field, if single value, apply to all sortby fields. e.g. desc,asc ..."
 // @Param	limit	query	string	false	"Limit the size of result set. Must be an integer"
 // @Param	offset	query	string	false	"Start position of result set. Must be an integer"
-// @Success 200 {object} models.RupTipoEspecialidad
+// @Success 200 {object} models.TipoImpuesto
 // @Failure 404 not found resource
 // @router / [get]
-func (c *RupTipoEspecialidadController) GetAll() {
+func (c *TipoImpuestoController) GetAll() {
 	var fields []string
 	var sortby []string
 	var order []string
@@ -130,7 +130,7 @@ func (c *RupTipoEspecialidadController) GetAll() {
 		}
 	}
 
-	l, err := models.GetAllRupTipoEspecialidad(query, fields, sortby, order, offset, limit)
+	l, err := models.GetAllTipoImpuesto(query, fields, sortby, order, offset, limit)
 	if err != nil {
 		logs.Error(err)
 		//c.Data["development"] = map[string]interface{}{"Code": "000", "Body": err.Error(), "Type": "error"}
@@ -147,18 +147,18 @@ func (c *RupTipoEspecialidadController) GetAll() {
 
 // Put ...
 // @Title Put
-// @Description update the RupTipoEspecialidad
+// @Description update the TipoImpuesto
 // @Param	id		path 	string	true		"The id you want to update"
-// @Param	body		body 	models.RupTipoEspecialidad	true		"body for RupTipoEspecialidad content"
-// @Success 200 {object} models.RupTipoEspecialidad
+// @Param	body		body 	models.TipoImpuesto	true		"body for TipoImpuesto content"
+// @Success 200 {object} models.TipoImpuesto
 // @Failure 400 the request contains incorrect syntax
 // @router /:id [put]
-func (c *RupTipoEspecialidadController) Put() {
+func (c *TipoImpuestoController) Put() {
 	idStr := c.Ctx.Input.Param(":id")
 	id, _ := strconv.Atoi(idStr)
-	v := models.RupTipoEspecialidad{Id: id}
+	v := models.TipoImpuesto{Id: id}
 	if err := json.Unmarshal(c.Ctx.Input.RequestBody, &v); err == nil {
-		if err := models.UpdateRupTipoEspecialidadById(&v); err == nil {
+		if err := models.UpdateTipoImpuestoById(&v); err == nil {
 			c.Data["json"] = v
 		} else {
 			logs.Error(err)
@@ -177,15 +177,15 @@ func (c *RupTipoEspecialidadController) Put() {
 
 // Delete ...
 // @Title Delete
-// @Description delete the RupTipoEspecialidad
+// @Description delete the TipoImpuesto
 // @Param	id		path 	string	true		"The id you want to delete"
 // @Success 200 {string} delete success!
 // @Failure 404 not found resource
 // @router /:id [delete]
-func (c *RupTipoEspecialidadController) Delete() {
+func (c *TipoImpuestoController) Delete() {
 	idStr := c.Ctx.Input.Param(":id")
 	id, _ := strconv.Atoi(idStr)
-	if err := models.DeleteRupTipoEspecialidad(id); err == nil {
+	if err := models.DeleteTipoImpuesto(id); err == nil {
 		c.Data["json"] = map[string]interface{}{"Id": id}
 	} else {
 		logs.Error(err)

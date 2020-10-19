@@ -10,7 +10,7 @@ import (
 	"github.com/astaxie/beego/orm"
 )
 
-type RupTipoEspecialidad struct {
+type ClasificacionCiiu struct {
 	Id                int       `orm:"column(id);pk;auto"`
 	Nombre            string    `orm:"column(nombre)"`
 	Descripcion       string    `orm:"column(descripcion);null"`
@@ -21,39 +21,39 @@ type RupTipoEspecialidad struct {
 	FechaModificacion time.Time `orm:"column(fecha_modificacion);type(timestamp without time zone)"`
 }
 
-func (t *RupTipoEspecialidad) TableName() string {
-	return "rup_tipo_especialidad"
+func (t *ClasificacionCiiu) TableName() string {
+	return "clasificacion_ciiu"
 }
 
 func init() {
-	orm.RegisterModel(new(RupTipoEspecialidad))
+	orm.RegisterModel(new(ClasificacionCiiu))
 }
 
-// AddRupTipoEspecialidad insert a new RupTipoEspecialidad into database and returns
+// AddClasificacionCiiu insert a new ClasificacionCiiu into database and returns
 // last inserted Id on success.
-func AddRupTipoEspecialidad(m *RupTipoEspecialidad) (id int64, err error) {
+func AddClasificacionCiiu(m *ClasificacionCiiu) (id int64, err error) {
 	o := orm.NewOrm()
 	id, err = o.Insert(m)
 	return
 }
 
-// GetRupTipoEspecialidadById retrieves RupTipoEspecialidad by Id. Returns error if
+// GetClasificacionCiiuById retrieves ClasificacionCiiu by Id. Returns error if
 // Id doesn't exist
-func GetRupTipoEspecialidadById(id int) (v *RupTipoEspecialidad, err error) {
+func GetClasificacionCiiuById(id int) (v *ClasificacionCiiu, err error) {
 	o := orm.NewOrm()
-	v = &RupTipoEspecialidad{Id: id}
+	v = &ClasificacionCiiu{Id: id}
 	if err = o.Read(v); err == nil {
 		return v, nil
 	}
 	return nil, err
 }
 
-// GetAllRupTipoEspecialidad retrieves all RupTipoEspecialidad matches certain condition. Returns empty list if
+// GetAllClasificacionCiiu retrieves all ClasificacionCiiu matches certain condition. Returns empty list if
 // no records exist
-func GetAllRupTipoEspecialidad(query map[string]string, fields []string, sortby []string, order []string,
+func GetAllClasificacionCiiu(query map[string]string, fields []string, sortby []string, order []string,
 	offset int64, limit int64) (ml []interface{}, err error) {
 	o := orm.NewOrm()
-	qs := o.QueryTable(new(RupTipoEspecialidad)).RelatedSel()
+	qs := o.QueryTable(new(ClasificacionCiiu)).RelatedSel()
 	// query k=v
 	for k, v := range query {
 		// rewrite dot-notation to Object__Attribute
@@ -103,7 +103,7 @@ func GetAllRupTipoEspecialidad(query map[string]string, fields []string, sortby 
 		}
 	}
 
-	var l []RupTipoEspecialidad
+	var l []ClasificacionCiiu
 	qs = qs.OrderBy(sortFields...)
 	if _, err = qs.Limit(limit, offset).All(&l, fields...); err == nil {
 		if len(fields) == 0 {
@@ -126,11 +126,11 @@ func GetAllRupTipoEspecialidad(query map[string]string, fields []string, sortby 
 	return nil, err
 }
 
-// UpdateRupTipoEspecialidad updates RupTipoEspecialidad by Id and returns error if
+// UpdateClasificacionCiiu updates ClasificacionCiiu by Id and returns error if
 // the record to be updated doesn't exist
-func UpdateRupTipoEspecialidadById(m *RupTipoEspecialidad) (err error) {
+func UpdateClasificacionCiiuById(m *ClasificacionCiiu) (err error) {
 	o := orm.NewOrm()
-	v := RupTipoEspecialidad{Id: m.Id}
+	v := ClasificacionCiiu{Id: m.Id}
 	// ascertain id exists in the database
 	if err = o.Read(&v); err == nil {
 		var num int64
@@ -141,15 +141,15 @@ func UpdateRupTipoEspecialidadById(m *RupTipoEspecialidad) (err error) {
 	return
 }
 
-// DeleteRupTipoEspecialidad deletes RupTipoEspecialidad by Id and returns error if
+// DeleteClasificacionCiiu deletes ClasificacionCiiu by Id and returns error if
 // the record to be deleted doesn't exist
-func DeleteRupTipoEspecialidad(id int) (err error) {
+func DeleteClasificacionCiiu(id int) (err error) {
 	o := orm.NewOrm()
-	v := RupTipoEspecialidad{Id: id}
+	v := ClasificacionCiiu{Id: id}
 	// ascertain id exists in the database
 	if err = o.Read(&v); err == nil {
 		var num int64
-		if num, err = o.Delete(&RupTipoEspecialidad{Id: id}); err == nil {
+		if num, err = o.Delete(&ClasificacionCiiu{Id: id}); err == nil {
 			fmt.Println("Number of records deleted in database:", num)
 		}
 	}
