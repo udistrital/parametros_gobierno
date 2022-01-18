@@ -1,2 +1,22 @@
-lastupdate.tmp
+# Binarios y Temporales
+*.tmp
+*.exe
+*.zip
+*.log
+*~
 parametros_gobierno
+main
+
+# IDEs
+.vscode
+
+# Variables de Entorno
+*.env
+!template.env
+!develop.env
+
+# Otros
+.scannerwork/
+swagger/**
+!swagger/swagger.json
+!swagger/swagger.yml
